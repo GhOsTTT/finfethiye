@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>finfethiye</title>
-  <meta name="description" content="FIN - sip & bite">
+  <meta name="description" content="Fethiye'de deniz kenarında samimi bir pub & restoran: FIN - sip & bite">
   <meta property="og:title" content="FIN Fethiye">
-  <meta property="og:description" content="FIN - sip & bite">
+  <meta property="og:description" content="Fethiye'de deniz kenarında samimi bir pub & restoran: FIN - sip & bite">
   <meta property="og:image" content="https://www.finfethiye.com/og-image.jpg">
   <meta property="og:url" content="https://www.finfethiye.com">
   <meta name="theme-color" content="#f5f0e6">
@@ -151,29 +151,162 @@
       left: 50%;
       transform: translate(-50%, -50%);
       box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
     .modal.show {
       display: block;
+      opacity: 1;
+    }
+
+    .language-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 3;
+    }
+
+    .language-switcher button {
+      background: none;
+      border: 1px solid rgb(120, 70, 60);
+      color: rgb(120, 70, 60);
+      padding: 5px 10px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .language-switcher button:hover {
+      background: rgb(120, 70, 60);
+      color: white;
+    }
+
+    .language-switcher button.active {
+      background: rgb(120, 70, 60);
+      color: white;
+    }
+
+    [lang="en"], [lang="ru"] {
+      display: none;
+    }
+
+    html[lang="en"] [lang="en"] {
+      display: block;
+    }
+
+    html[lang="en"] [lang="tr"], html[lang="en"] [lang="ru"] {
+      display: none;
+    }
+
+    html[lang="ru"] [lang="ru"] {
+      display: block;
+    }
+
+    html[lang="ru"] [lang="tr"], html[lang="ru"] [lang="en"] {
+      display: none;
     }
   </style>
   <script>
     function showModal() {
-      document.getElementById('modal').classList.add('show');
-      setTimeout(() => document.getElementById('modal').classList.remove('show'), 3000);
+      const lang = document.documentElement.lang;
+      const modal = document.querySelector(`#modal[lang="${lang}"]`);
+      if (modal) {
+        modal.classList.add('show');
+        setTimeout(() => {
+          modal.classList.remove('show');
+        }, 3000);
+      }
     }
+
+    function changeLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.language-switcher button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`.language-switcher button[data-lang="${lang}"]`).classList.add('active');
+      
+      // Show/hide elements based on language
+      document.querySelectorAll('[lang="tr"]').forEach(el => {
+        el.style.display = lang === 'tr' ? 'block' : 'none';
+      });
+      document.querySelectorAll('[lang="en"]').forEach(el => {
+        el.style.display = lang === 'en' ? 'block' : 'none';
+      });
+      document.querySelectorAll('[lang="ru"]').forEach(el => {
+        el.style.display = lang === 'ru' ? 'block' : 'none';
+      });
+    }
+
+    // Initialize language on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('tr');
+      // Ensure all modals are hidden on page load
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.classList.remove('show');
+      });
+    });
   </script>
 </head>
 <body>
+  <div class="language-switcher">
+    <button data-lang="tr" onclick="changeLanguage('tr')" class="active">TR</button>
+    <button data-lang="en" onclick="changeLanguage('en')">EN</button>
+    <button data-lang="ru" onclick="changeLanguage('ru')">RU</button>
+  </div>
+
   <div class="brand">
     <h1 class="main">FIN</h1>
-    <div class="sub">sip & bite</div>
+    <div class="sub" lang="tr">sip & bite</div>
+    <div class="sub" lang="en">sip & bite</div>
+    <div class="sub" lang="ru">sip & bite</div>
   </div>
-  <div class="info"><a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foça, 1054. Sk. 102/A, 48300 Fethiye/Muğla</a></div>
-  <div class="info"><a href="tel:+905068580000">+90 506 858 00 00</a></div>
-  <div class="info"><a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a></div>
-  <div class="info"><a href="#" onclick="showModal(); return false;">Menüyü Gör</a></div>
-  <div id="modal" class="modal">Menü hazırlanıyor, yakında burada!</div>
+
+  <div class="info" lang="tr">
+    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foça, 1054. Sk. 102/A, 48300 Fethiye/Muğla</a>
+  </div>
+  <div class="info" lang="en">
+    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foca, 1054. St. 102/A, 48300 Fethiye/Mugla</a>
+  </div>
+  <div class="info" lang="ru">
+    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Фоча, ул. 1054, 102/A, 48300 Фетхие/Мугла</a>
+  </div>
+
+  <div class="info" lang="tr">
+    <a href="tel:+905068580000">+90 506 858 00 00</a>
+  </div>
+  <div class="info" lang="en">
+    <a href="tel:+905068580000">+90 506 858 00 00</a>
+  </div>
+  <div class="info" lang="ru">
+    <a href="tel:+905068580000">+90 506 858 00 00</a>
+  </div>
+
+  <div class="info" lang="tr">
+    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
+  </div>
+  <div class="info" lang="en">
+    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
+  </div>
+  <div class="info" lang="ru">
+    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
+  </div>
+
+  <div class="info" lang="tr">
+    <a href="#" onclick="showModal(); return false;">Menüyü Gör</a>
+  </div>
+  <div class="info" lang="en">
+    <a href="#" onclick="showModal(); return false;">View Menu</a>
+  </div>
+  <div class="info" lang="ru">
+    <a href="#" onclick="showModal(); return false;">Посмотреть Меню</a>
+  </div>
+
+  <div id="modal" class="modal" lang="tr">Menü hazırlanıyor, yakında burada!</div>
+  <div id="modal" class="modal" lang="en">Menu is being prepared, coming soon!</div>
+  <div id="modal" class="modal" lang="ru">Меню готовится, скоро будет доступно!</div>
+
   <div class="wave"></div>
   <div class="wave">
     <div class="wave wave1"></div>
