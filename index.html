@@ -18,29 +18,59 @@
       align-items: center;
       height: 100vh;
       text-align: center;
+      animation: fadeIn 2s ease-in;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .brand {
       font-family: 'Montserrat', sans-serif;
+      animation: slideDown 1.5s ease-out;
     }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
     .brand .main {
       font-weight: 700;
       font-size: 20vh;
       color: rgb(120, 70, 60);
       margin: 0;
     }
+
     .brand .sub {
       font-weight: 300;
       font-size: 2vh;
       color: rgb(120, 70, 60);
       margin: -1rem 0 3rem;
+      animation: fadeIn 2.5s ease-in;
     }
+
     .info {
       font-size: 1rem;
       margin: 0.5rem 0;
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
     }
+
+    .info:nth-of-type(2) { animation-delay: 1s; }
+    .info:nth-of-type(3) { animation-delay: 1.2s; }
+    .info:nth-of-type(4) { animation-delay: 1.4s; }
+    .info:nth-of-type(5) { animation-delay: 1.6s; }
+
     a {
       color: rgb(120, 70, 60);
       text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: rgb(90, 50, 40);
     }
   </style>
 </head>
