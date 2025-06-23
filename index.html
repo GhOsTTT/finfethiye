@@ -1,316 +1,920 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>finfethiye</title>
-  <meta name="description" content="FIN Fethiye - sip & bite">
-  <meta property="og:title" content="FIN Fethiye">
-  <meta property="og:description" content="FIN Fethiye - sip & bite">
-  <meta property="og:image" content="https://www.finfethiye.com/og-image.jpg">
-  <meta property="og:url" content="https://www.finfethiye.com">
-  <meta name="theme-color" content="#f5f0e6">
-  <link rel="manifest" href="manifest.json">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Roboto&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom, #f5f0e6 0%, #fbe8d3 100%);
-      font-family: 'Roboto', sans-serif;
-      color: rgb(80, 80, 80);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      animation: fadeIn 2s ease-in;
-      position: relative;
-      overflow: hidden;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>finfethiye</title>
+  <meta name="description" content="FIN Fethiye - sip & bite">
+  <meta property="og:title" content="FIN Fethiye">
+  <meta property="og:description" content="FIN Fethiye - sip & bite">
+  <meta property="og:image" content="https://www.finfethiye.com/og-image.jpg">
+  <meta property="og:url" content="https://www.finfethiye.com">
+  <meta name="theme-color" content="#f5f0e6">
+  <link rel="manifest" href="manifest.json">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #f5f0e6 0%, #fbe8d3 100%);
+      font-family: 'Roboto', sans-serif;
+      color: rgb(80, 80, 80);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      animation: fadeIn 2s ease-in;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .brand {
+      font-family: 'Montserrat', sans-serif;
+      animation: slideDown 1.5s ease-out;
+      z-index: 1;
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .brand .main {
+      font-weight: 700;
+      font-size: 20vh;
+      color: rgb(120, 70, 60);
+      margin: 0;
+    }
+
+    .brand .sub {
+      font-weight: 300;
+      font-size: 2vh;
+      color: rgb(120, 70, 60);
+      margin: -1rem 0 3rem;
+      animation: fadeIn 2.5s ease-in;
+    }
+
+    .info {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+      z-index: 1;
+    }
+
+    .info:nth-of-type(2) { animation-delay: 1s; }
+    .info:nth-of-type(3) { animation-delay: 1.2s; }
+    .info:nth-of-type(4) { animation-delay: 1.4s; }
+    .info:nth-of-type(5) { animation-delay: 1.6s; }
+
+    a {
+      color: rgb(120, 70, 60);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: rgb(90, 50, 40);
+    }
+
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 15vh;
+      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23f5f0e6" fill-opacity="1" d="M0,96L80,101.3C160,107,320,117,480,144C640,171,800,213,960,197.3C1120,181,1280,107,1360,69.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
+      background-size: cover;
+      animation: waveMotion 10s linear infinite;
+    }
+
+    @keyframes waveMotion {
+      0% { background-position-x: 0; }
+      100% { background-position-x: 1000px; }
+    } 
+
+    .wave-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 25vh;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .wave {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      background-repeat: repeat-x;
+      background-size: 50% 100%;
+      animation: waveAnim 8s linear infinite;
+      opacity: 0.4;
+    }
+
+    .wave1 {
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23f5f0e6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,64L80,85.3C160,107,320,149,480,160C640,171,800,149,960,144C1120,139,1280,149,1360,154.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
+      bottom: 0;
+      left: 0;
+      animation-delay: 0s;
+    }
+
+    .wave2 {
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23fbe8d3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="0.6" d="M0,128L80,133.3C160,139,320,149,480,165.3C640,181,800,203,960,197.3C1120,192,1280,160,1360,144L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
+      bottom: 0;
+      left: 0;
+      animation-delay: -4s;
+    }
+
+    @keyframes waveAnim {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2;
+      padding: 1rem;
+      background: white;
+      border: 2px solid rgb(120, 70, 60);
+      border-radius: 10px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      max-height: 80vh; /* Modal yüksekliğini sınırlayın */
+      overflow-y: auto; /* İçerik taşarsa kaydırma çubuğu ekleyin */
+      width: 90%; /* Genişliği ayarlayın */
+      max-width: 600px; /* Maksimum genişliği ayarlayın */
+      text-align: left;
+    }
+
+    .modal.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .language-switcher {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 3;
+    }
+
+    .language-switcher button {
+      background: none;
+      border: 1px solid rgb(120, 70, 60);
+      color: rgb(120, 70, 60);
+      padding: 5px 10px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .language-switcher button:hover {
+      background: rgb(120, 70, 60);
+      color: white;
+    }
+
+    .language-switcher button.active {
+      background: rgb(120, 70, 60);
+      color: white;
+    }
+
+    [lang="en"], [lang="ru"] {
+      display: none;
+    }
+
+    html[lang="en"] [lang="en"] {
+      display: block;
+    }
+
+    html[lang="en"] [lang="tr"], html[lang="en"] [lang="ru"] {
+      display: none;
+    }
+
+    html[lang="ru"] [lang="ru"] {
+      display: block;
+    }
+
+    html[lang="ru"] [lang="tr"], html[lang="ru"] [lang="en"] {
+      display: none;
+    }
+
+    /* Menü stilizasyonu */
+    .menu-section {
+        margin-bottom: 20px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    .menu-section h3 {
+        font-family: 'Montserrat', sans-serif;
+        color: rgb(120, 70, 60);
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        border-bottom: 2px solid rgb(120, 70, 60);
+        padding-bottom: 5px;
     }
 
-    .brand {
-      font-family: 'Montserrat', sans-serif;
-      animation: slideDown 1.5s ease-out;
-      z-index: 1;
+    .menu-item {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed #ccc;
     }
 
-    @keyframes slideDown {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    .menu-item:last-child {
+        border-bottom: none;
     }
 
-    .brand .main {
-      font-weight: 700;
-      font-size: 20vh;
-      color: rgb(120, 70, 60);
-      margin: 0;
+    .menu-item-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 5px;
     }
 
-    .brand .sub {
-      font-weight: 300;
-      font-size: 2vh;
-      color: rgb(120, 70, 60);
-      margin: -1rem 0 3rem;
-      animation: fadeIn 2.5s ease-in;
+    .menu-item-name {
+        font-weight: bold;
+        color: rgb(80, 80, 80);
+        font-size: 1.1rem;
     }
 
-    .info {
-      font-size: 1rem;
-      margin: 0.5rem 0;
-      opacity: 0;
-      animation: fadeIn 1s ease-in forwards;
-      z-index: 1;
+    .menu-item-price {
+        font-weight: bold;
+        color: rgb(120, 70, 60);
+        font-size: 1.1rem;
     }
 
-    .info:nth-of-type(2) { animation-delay: 1s; }
-    .info:nth-of-type(3) { animation-delay: 1.2s; }
-    .info:nth-of-type(4) { animation-delay: 1.4s; }
-    .info:nth-of-type(5) { animation-delay: 1.6s; }
+    .menu-item-description {
+        font-size: 0.9rem;
+        color: rgb(100, 100, 100);
+        margin-top: 5px;
+    }
+    .menu-note {
+        font-style: italic;
+        font-size: 0.85rem;
+        margin-top: 20px;
+        color: rgb(100, 100, 100);
+    }
+  </style>
+  <script>
+    function showModal() {
+      const lang = document.documentElement.lang;
+      const modalId = `menuModal-${lang}`; // Dil bazlı modal ID'si
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('show');
+      }
+    }
 
-    a {
-      color: rgb(120, 70, 60);
-      text-decoration: none;
-      transition: color 0.3s ease;
+    function closeModal(lang) {
+        const modalId = `menuModal-${lang}`;
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            modal.classList.remove('show');
+        }
     }
 
-    a:hover {
-      color: rgb(90, 50, 40);
-    }
+    function changeLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.language-switcher button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      document.querySelector(`.language-switcher button[data-lang="${lang}"]`).classList.add('active');
+      
+      // Show/hide elements based on language
+      document.querySelectorAll('[lang]').forEach(el => {
+        if (el.getAttribute('lang') === lang) {
+          el.style.display = 'block';
+        } else {
+          el.style.display = 'none';
+        }
+      });
+    }
 
-    .wave {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 15vh;
-      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23f5f0e6" fill-opacity="1" d="M0,96L80,101.3C160,107,320,117,480,144C640,171,800,213,960,197.3C1120,181,1280,107,1360,69.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
-      background-size: cover;
-      animation: waveMotion 10s linear infinite;
-    }
-
-    @keyframes waveMotion {
-      0% { background-position-x: 0; }
-      100% { background-position-x: 1000px; }
-    } 
-
-    .wave-container {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 25vh;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .wave {
-      position: absolute;
-      width: 200%;
-      height: 100%;
-      background-repeat: repeat-x;
-      background-size: 50% 100%;
-      animation: waveAnim 8s linear infinite;
-      opacity: 0.4;
-    }
-
-    .wave1 {
-      background-image: url('data:image/svg+xml;utf8,<svg fill="%23f5f0e6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,64L80,85.3C160,107,320,149,480,160C640,171,800,149,960,144C1120,139,1280,149,1360,154.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
-      bottom: 0;
-      left: 0;
-      animation-delay: 0s;
-    }
-
-    .wave2 {
-      background-image: url('data:image/svg+xml;utf8,<svg fill="%23fbe8d3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="0.6" d="M0,128L80,133.3C160,139,320,149,480,165.3C640,181,800,203,960,197.3C1120,192,1280,160,1360,144L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
-      bottom: 0;
-      left: 0;
-      animation-delay: -4s;
-    }
-
-    @keyframes waveAnim {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 2;
-      padding: 1rem;
-      background: white;
-      border: 2px solid rgb(120, 70, 60);
-      border-radius: 10px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-
-    .modal.show {
-      display: block;
-      opacity: 1;
-    }
-
-    .language-switcher {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      z-index: 3;
-    }
-
-    .language-switcher button {
-      background: none;
-      border: 1px solid rgb(120, 70, 60);
-      color: rgb(120, 70, 60);
-      padding: 5px 10px;
-      margin: 0 5px;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: all 0.3s ease;
-    }
-
-    .language-switcher button:hover {
-      background: rgb(120, 70, 60);
-      color: white;
-    }
-
-    .language-switcher button.active {
-      background: rgb(120, 70, 60);
-      color: white;
-    }
-
-    [lang="en"], [lang="ru"] {
-      display: none;
-    }
-
-    html[lang="en"] [lang="en"] {
-      display: block;
-    }
-
-    html[lang="en"] [lang="tr"], html[lang="en"] [lang="ru"] {
-      display: none;
-    }
-
-    html[lang="ru"] [lang="ru"] {
-      display: block;
-    }
-
-    html[lang="ru"] [lang="tr"], html[lang="ru"] [lang="en"] {
-      display: none;
-    }
-  </style>
-  <script>
-    function showModal() {
-      const lang = document.documentElement.lang;
-      const modal = document.querySelector(`#modal[lang="${lang}"]`);
-      if (modal) {
-        modal.classList.add('show');
-        setTimeout(() => {
-          modal.classList.remove('show');
-        }, 3000);
-      }
-    }
-
-    function changeLanguage(lang) {
-      document.documentElement.lang = lang;
-      document.querySelectorAll('.language-switcher button').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      document.querySelector(`.language-switcher button[data-lang="${lang}"]`).classList.add('active');
-      
-      // Show/hide elements based on language
-      document.querySelectorAll('[lang="tr"]').forEach(el => {
-        el.style.display = lang === 'tr' ? 'block' : 'none';
-      });
-      document.querySelectorAll('[lang="en"]').forEach(el => {
-        el.style.display = lang === 'en' ? 'block' : 'none';
-      });
-      document.querySelectorAll('[lang="ru"]').forEach(el => {
-        el.style.display = lang === 'ru' ? 'block' : 'none';
-      });
-    }
-
-    // Initialize language on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      changeLanguage('tr');
-      // Ensure all modals are hidden on page load
-      document.querySelectorAll('.modal').forEach(modal => {
-        modal.classList.remove('show');
-      });
-    });
-  </script>
+    // Initialize language on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      changeLanguage('tr');
+      // Ensure all modals are hidden on page load
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.classList.remove('show');
+      });
+    });
+  </script>
 </head>
 <body>
-  <div class="language-switcher">
-    <button data-lang="tr" onclick="changeLanguage('tr')" class="active">TR</button>
-    <button data-lang="en" onclick="changeLanguage('en')">EN</button>
-    <button data-lang="ru" onclick="changeLanguage('ru')">RU</button>
-  </div>
+  <div class="language-switcher">
+    <button data-lang="tr" onclick="changeLanguage('tr')" class="active">TR</button>
+    <button data-lang="en" onclick="changeLanguage('en')">EN</button>
+    <button data-lang="ru" onclick="changeLanguage('ru')">RU</button>
+  </div>
 
-  <div class="brand">
-    <h1 class="main">FIN</h1>
-    <div class="sub" lang="tr">sip & bite</div>
-    <div class="sub" lang="en">sip & bite</div>
-    <div class="sub" lang="ru">sip & bite</div>
-  </div>
+  <div class="brand">
+    <h1 class="main">FIN</h1>
+    <div class="sub" lang="tr">sip & bite</div>
+    <div class="sub" lang="en">sip & bite</div>
+    <div class="sub" lang="ru">sip & bite</div>
+  </div>
 
-  <div class="info" lang="tr">
-    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foça, 1054. Sk. 102/A, 48300 Fethiye/Muğla</a>
-  </div>
-  <div class="info" lang="en">
-    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foca, 1054. St. 102/A, 48300 Fethiye/Mugla</a>
-  </div>
-  <div class="info" lang="ru">
-    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Фоча, ул. 1054, 102/A, 48300 Фетхие/Мугла</a>
-  </div>
+  <div class="info" lang="tr">
+    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foça, 1054. Sk. 102/A, 48300 Fethiye/Muğla</a>
+  </div>
+  <div class="info" lang="en">
+    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foca, 1054. St. 102/A, 48300 Fethiye/Mugla</a>
+  </div>
+  <div class="info" lang="ru">
+    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Фоча, ул. 1054, 102/A, 48300 Фетхие/Мугла</a>
+  </div>
 
-  <div class="info" lang="tr">
-    <a href="tel:+905068580000">+90 506 858 00 00</a>
-  </div>
-  <div class="info" lang="en">
-    <a href="tel:+905068580000">+90 506 858 00 00</a>
-  </div>
-  <div class="info" lang="ru">
-    <a href="tel:+905068580000">+90 506 858 00 00</a>
-  </div>
+  <div class="info" lang="tr">
+    <a href="tel:+905068580000">+90 506 858 00 00</a>
+  </div>
+  <div class="info" lang="en">
+    <a href="tel:+905068580000">+90 506 858 00 00</a>
+  </div>
+  <div class="info" lang="ru">
+    <a href="tel:+905068580000">+90 506 858 00 00</a>
+  </div>
 
-  <div class="info" lang="tr">
-    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
-  </div>
-  <div class="info" lang="en">
-    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
-  </div>
-  <div class="info" lang="ru">
-    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
-  </div>
+  <div class="info" lang="tr">
+    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
+  </div>
+  <div class="info" lang="en">
+    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
+  </div>
+  <div class="info" lang="ru">
+    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
+  </div>
 
-  <div class="info" lang="tr">
-    <a href="#" onclick="showModal(); return false;">Menüyü Gör</a>
-  </div>
-  <div class="info" lang="en">
-    <a href="#" onclick="showModal(); return false;">View Menu</a>
-  </div>
-  <div class="info" lang="ru">
-    <a href="#" onclick="showModal(); return false;">Посмотреть Меню</a>
-  </div>
+  <div class="info" lang="tr">
+    <a href="#" onclick="showModal(); return false;">Menüyü Gör</a>
+  </div>
+  <div class="info" lang="en">
+    <a href="#" onclick="showModal(); return false;">View Menu</a>
+  </div>
+  <div class="info" lang="ru">
+    <a href="#" onclick="showModal(); return false;">Посмотреть Меню</a>
+  </div>
 
-  <div id="modal" class="modal" lang="tr">Menü hazırlanıyor, yakında burada!</div>
-  <div id="modal" class="modal" lang="en">Menu is being prepared, coming soon!</div>
-  <div id="modal" class="modal" lang="ru">Меню готовится, скоро будет доступно!</div>
+    <div id="menuModal-tr" class="modal" lang="tr">
+        <span style="float: right; cursor: pointer; font-size: 1.5rem;" onclick="closeModal('tr')">&times;</span>
+        <h2>Menü</h2>
+        <div class="menu-section">
+            <h3>TASTES</h3>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ALEVDE MÜHÜRLENMİŞ, ÖZEL MARİNE EDİLMİŞ TAZE AHTAPOT ŞİŞ</span>
+                    <span class="menu-item-price">560₺</span>
+                </div>
+                <div class="menu-item-description">KIZARMIŞ ARMUT EŞLİĞİNDE.</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ISLAND STING</span>
+                    <span class="menu-item-price">560₺</span>
+                </div>
+                <div class="menu-item-description">JUMBO KARİDES VE KÖZLENMİŞ ANANAS ŞİŞE DİZİLİR, IZGARADA TROPİK TATLARLA PİŞİRİLİR.</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">FIRE GLAZE</span>
+                    <span class="menu-item-price">450₺</span>
+                </div>
+                <div class="menu-item-description">BİRA İLE MARİNE EDİLMİŞ ÇITIR TAVUK, PANKO İLE KAPLANIR: TATLI ACI SOS, SARIMSAK, BAL VE HAFİF SOYA SOSUYLA LEZZETLENDİRİLİR.</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">PATATES KIZARTMASI</span>
+                    <span class="menu-item-price">200₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">CRISPY PLATE</span>
+                    <span class="menu-item-price">650₺</span>
+                </div>
+                <div class="menu-item-description">ÇITIR TAVUK, SOSİS VE PATATES KIZARMASI.</div>
+            </div>
+        </div>
 
-  <div class="wave"></div>
-  <div class="wave">
-    <div class="wave wave1"></div>
-    <div class="wave wave2"></div>
-  </div>
+        <div class="menu-section">
+            <h3>COCKTAILS</h3>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Signature Cocktails</span>
+                    <span class="menu-item-price">450₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ITIR</span>
+                </div>
+                <div class="menu-item-description">ITIR YAPRAĞI, CİN, YEŞİL ELMA ASİDİ, BEYAZ VERMUT, BAHÇE LİMONU - tatı ekşi ferah</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">NORMAL</span>
+                </div>
+                <div class="menu-item-description">PAPATYALI VOTKA, KUZUKULAĞI, ASİDİK BEYAZ ŞARAP, YEŞİL ERİK - ekşi asidik ferah</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">CHERRY PIE</span>
+                </div>
+                <div class="menu-item-description">VİŞNE EKŞİSİ, İSLİ İSKOÇ VİSKİSİ, LİME, VANİLYA TENTÜRÜ, PORTAKAL BİTTERİ - meyvemsi tatlı sert</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">YES PLEASE</span>
+                </div>
+                <div class="menu-item-description">TEKİLA & MEZCAL KARIŞIMI, PASSION FRUIT, LİME, URFA İSOT, LİMONOTU - hafif acı tatlı ekşi sert</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">LET'S GO MATE</span>
+                </div>
+                <div class="menu-item-description">ZACAPA 23, ANANAS, YEŞİL ÇAY, LİME, AROMATİK BAHARATLAR - tropik hafif tatlı soyut</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">MEANWHILE KAYAKÖY</span>
+                </div>
+                <div class="menu-item-description">TAZE İNCİR YAPRAĞI, VOTKA, MÜRVER ÇİÇEĞİ, ASİDİK ÇÖZELTİLER, PROSECCO - çiçeksi asidik ferah</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">RITUEL</span>
+                </div>
+                <div class="menu-item-description">KIRMIZI MEYVELER, CİN, PALO SANTO, AROMATİZE KIRMIZI ŞARAP, BAHÇE LİMONU - tatlı ekşi meyvemsi</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Classic Cocktails</span>
+                    <span class="menu-item-price">450₺</span>
+                </div>
+                <div class="menu-item-description">Barımızda klasiklere de yer var, sipariş için servis ekibimize danışın.</div>
+            </div>
+            <p class="menu-note">Tüm ürünlerimiz el yapımıdır.</p>
+        </div>
+
+        <div class="menu-section">
+            <h3>NEAT & NOBLE</h3>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">BEER IMPORT</span>
+                    <span class="menu-item-price">250₺</span>
+                </div>
+                <div class="menu-item-description">Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">LOCAL</span>
+                    <span class="menu-item-price">180₺</span>
+                </div>
+                <div class="menu-item-description">Bomonti, Efes malt, Efes premium, Efes</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">DRAFT</span>
+                    <span class="menu-item-price">120/150₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Jameson</span>
+                    <span class="menu-item-price">400/550₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Glenfiddich</span>
+                    <span class="menu-item-price">550/650₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Talisker 10</span>
+                    <span class="menu-item-price">650/800₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Beefeater</span>
+                    <span class="menu-item-price">350₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Malfy</span>
+                    <span class="menu-item-price">550₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Dead Man's Finger</span>
+                    <span class="menu-item-price">250₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Mescal</span>
+                    <span class="menu-item-price">350₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Belfast</span>
+                    <span class="menu-item-price">350₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Jager</span>
+                    <span class="menu-item-price">200₺</span>
+                </div>
+            </div>
+        </div>
+        <p class="menu-note">Herhangi bir gıda alerjiniz varsa lütfen personelimize bildiriniz.</p>
+    </div>
+
+    <div id="menuModal-en" class="modal" lang="en">
+        <span style="float: right; cursor: pointer; font-size: 1.5rem;" onclick="closeModal('en')">&times;</span>
+        <h2>Menu</h2>
+        <div class="menu-section">
+            <h3>TASTES</h3>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">FLAME-SEARED, SPECIALLY MARINATED FRESH OCTOPUS SKEWER</span>
+                    <span class="menu-item-price">560₺</span>
+                </div>
+                <div class="menu-item-description">SERVED WITH ROASTED PEAR.</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ISLAND STING</span>
+                    <span class="menu-item-price">560₺</span>
+                </div>
+                <div class="menu-item-description">JUMBO SHRIMP AND ROASTED PINEAPPLE ARE SKEWERED AND GRILLED WITH TROPICAL FLAVORS.</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">FIRE GLAZE</span>
+                    <span class="menu-item-price">450₺</span>
+                </div>
+                <div class="menu-item-description">CRISPY CHICKEN MARINATED WITH BEER, COATED WITH PANKO: FLAVORED WITH SWEET AND SOUR SAUCE, GARLIC, HONEY, AND LIGHT SOY SAUCE.</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">FRENCH FRIES</span>
+                    <span class="menu-item-price">200₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">CRISPY PLATE</span>
+                    <span class="menu-item-price">650₺</span>
+                </div>
+                <div class="menu-item-description">CRISPY CHICKEN, SAUSAGE AND FRENCH FRIES.</div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>COCKTAILS</h3>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Signature Cocktails</span>
+                    <span class="menu-item-price">450₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ITIR</span>
+                </div>
+                <div class="menu-item-description">GERANIUM LEAF, GIN, GREEN APPLE ACID, WHITE VERMOUTH, GARDEN LEMON - sour refreshing taste</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">NORMAL</span>
+                </div>
+                <div class="menu-item-description">CHAMOMILE VODKA, SORREL, ACIDIC WHITE WINE, GREEN PLUM - sour acidic refreshing</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">CHERRY PIE</span>
+                </div>
+                <div class="menu-item-description">SOUR CHERRY, SMOKED SCOTCH WHISKY, LIME, VANILLA TINCTURE, ORANGE BITTERS - fruity sweet strong</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">YES PLEASE</span>
+                </div>
+                <div class="menu-item-description">TEQUILA & MEZCAL BLEND, PASSION FRUIT, LIME, URFA ISOT, LEMONGRASS - slightly spicy sweet sour strong</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">LET'S GO MATE</span>
+                </div>
+                <div class="menu-item-description">ZACAPA 23, PINEAPPLE, GREEN TEA, LIME, AROMATIC SPICES - tropical lightly sweet abstract</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">MEANWHILE KAYAKÖY</span>
+                </div>
+                <div class="menu-item-description">FRESH FIG LEAF, VODKA, ELDERFLOWER, ACIDIC SOLUTIONS, PROSECCO - floral acidic refreshing</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">RITUEL</span>
+                </div>
+                <div class="menu-item-description">RED BERRIES, GIN, PALO SANTO, FLAVORED RED WINE, GARDEN LEMON - sweet sour fruity</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Classic Cocktails</span>
+                    <span class="menu-item-price">450₺</span>
+                </div>
+                <div class="menu-item-description">We also have classics at our bar, please ask our service team to order.</div>
+            </div>
+            <p class="menu-note">All our products are handmade.</p>
+        </div>
+
+        <div class="menu-section">
+            <h3>NEAT & NOBLE</h3>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">BEER IMPORT</span>
+                    <span class="menu-item-price">250₺</span>
+                </div>
+                <div class="menu-item-description">Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">LOCAL</span>
+                    <span class="menu-item-price">180₺</span>
+                </div>
+                <div class="menu-item-description">Bomonti, Efes malt, Efes premium, Efes</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">DRAFT</span>
+                    <span class="menu-item-price">120/150₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Jameson</span>
+                    <span class="menu-item-price">400/550₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Glenfiddich</span>
+                    <span class="menu-item-price">550/650₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Talisker 10</span>
+                    <span class="menu-item-price">650/800₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Beefeater</span>
+                    <span class="menu-item-price">350₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Malfy</span>
+                    <span class="menu-item-price">550₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Dead Man's Finger</span>
+                    <span class="menu-item-price">250₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Mescal</span>
+                    <span class="menu-item-price">350₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Belfast</span>
+                    <span class="menu-item-price">350₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Jager</span>
+                    <span class="menu-item-price">200₺</span>
+                </div>
+            </div>
+        </div>
+        <p class="menu-note">Please inform our staff if you have any food allergies.</p>
+    </div>
+
+    <div id="menuModal-ru" class="modal" lang="ru">
+        <span style="float: right; cursor: pointer; font-size: 1.5rem;" onclick="closeModal('ru')">&times;</span>
+        <h2>Меню</h2>
+        <div class="menu-section">
+            <h3>ВКУСЫ</h3>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ОСЬМИНОГ НА ГРИЛЕ, СПЕЦИАЛЬНО МАРИНОВАННЫЙ, СВЕЖИЙ, НА ШПАЖКЕ</span>
+                    <span class="menu-item-price">560₺</span>
+                </div>
+                <div class="menu-item-description">ПОДАЕТСЯ С ЖАРЕНОЙ ГРУШЕЙ.</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ОСТРОВНОЙ УЖАЛ</span>
+                    <span class="menu-item-price">560₺</span>
+                </div>
+                <div class="menu-item-description">БОЛЬШИЕ КРЕВЕТКИ И ЖАРЕНЫЙ АНАНАС НА ШПАЖКЕ, ПРИГОТОВЛЕННЫЕ НА ГРИЛЕ С ТРОПИЧЕСКИМИ ВКУСАМИ.</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ОГНЕННАЯ ГЛАЗУРЬ</span>
+                    <span class="menu-item-price">450₺</span>
+                </div>
+                <div class="menu-item-description">ХРУСТЯЩАЯ КУРИЦА, МАРИНОВАННАЯ В ПИВЕ, ПОКРЫТАЯ ПАНКО: ПРИПРАВЛЕНА СЛАДКО-КИСЛЫМ СОУСОМ, ЧЕСНОКОМ, МЕДОМ И ЛЕГКИМ СОЕВЫМ СОУСОМ.</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">КАРТОФЕЛЬ ФРИ</span>
+                    <span class="menu-item-price">200₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ХРУСТЯЩАЯ ТАРЕЛКА</span>
+                    <span class="menu-item-price">650₺</span>
+                </div>
+                <div class="menu-item-description">ХРУСТЯЩАЯ КУРИЦА, КОЛБАСКИ И КАРТОФЕЛЬ ФРИ.</div>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>КОКТЕЙЛИ</h3>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Авторские Коктейли</span>
+                    <span class="menu-item-price">450₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ИТИР</span>
+                </div>
+                <div class="menu-item-description">ЛИСТ ГЕРАНИ, ДЖИН, КИСЛОТА ЗЕЛЕНОГО ЯБЛОКА, БЕЛЫЙ ВЕРМУТ, САДОВЫЙ ЛИМОН - кислый, освежающий вкус</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">НОРМАЛЬНЫЙ</span>
+                </div>
+                <div class="menu-item-description">ВОДКА НА РОМАШКЕ, ЩАВЕЛЬ, КИСЛОЕ БЕЛОЕ ВИНО, ЗЕЛЕНАЯ СЛИВА - кислый, кислотный, освежающий</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ВИШНЕВЫЙ ПИРОГ</span>
+                </div>
+                <div class="menu-item-description">ВИШНЕВАЯ КИСЛОТА, КОПЧЕНЫЙ ШОТЛАНДСКИЙ ВИСКИ, ЛАЙМ, ВАНИЛЬНАЯ НАСТОЙКА, АПЕЛЬСИНОВЫЙ БИТТЕР - фруктовый, сладкий, крепкий</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ДА, ПОЖАЛУЙСТА</span>
+                </div>
+                <div class="menu-item-description">СМЕСЬ ТЕКИЛЫ И МЕСКАЛЯ, МАРАКУЙЯ, ЛАЙМ, УРФА ИСОТ, ЛЕМОНГРАСС - слегка острый, сладкий, кислый, крепкий</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ПОЙДЕМ, ДРУГ</span>
+                </div>
+                <div class="menu-item-description">ZACAPA 23, АНАНАС, ЗЕЛЕНЫЙ ЧАЙ, ЛАЙМ, АРОМАТИЧЕСКИЕ СПЕЦИИ - тропический, слегка сладкий, абстрактный</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ТЕМ ВРЕМЕНЕМ, КАЯКЁЙ</span>
+                </div>
+                <div class="menu-item-description">СВЕЖИЙ ИНЖИРНЫЙ ЛИСТ, ВОДКА, ЦВЕТОК БУЗИНЫ, КИСЛОТНЫЕ РАСТВОРЫ, ПРОСЕККО - цветочный, кислотный, освежающий</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">РИТУАЛ</span>
+                </div>
+                <div class="menu-item-description">КРАСНЫЕ ЯГОДЫ, ДЖИН, ПАЛО САНТО, АРОМАТИЗИРОВАННОЕ КРАСНОЕ ВИНО, САДОВЫЙ ЛИМОН - сладкий, кислый, фруктовый</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Классические Коктейли</span>
+                    <span class="menu-item-price">450₺</span>
+                </div>
+                <div class="menu-item-description">У нас в баре также есть классические коктейли, пожалуйста, обратитесь к нашему обслуживающему персоналу для заказа.</div>
+            </div>
+            <p class="menu-note">Все наши продукты ручной работы.</p>
+        </div>
+
+        <div class="menu-section">
+            <h3>ЧИСТЫЕ И БЛАГОРОДНЫЕ</h3>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">ИМПОРТНОЕ ПИВО</span>
+                    <span class="menu-item-price">250₺</span>
+                </div>
+                <div class="menu-item-description">Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">МЕСТНОЕ</span>
+                    <span class="menu-item-price">180₺</span>
+                </div>
+                <div class="menu-item-description">Bomonti, Efes malt, Efes premium, Efes</div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">РАЗЛИВНОЕ</span>
+                    <span class="menu-item-price">120/150₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Jameson</span>
+                    <span class="menu-item-price">400/550₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Glenfiddich</span>
+                    <span class="menu-item-price">550/650₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Talisker 10</span>
+                    <span class="menu-item-price">650/800₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Beefeater</span>
+                    <span class="menu-item-price">350₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Malfy</span>
+                    <span class="menu-item-price">550₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Dead Man's Finger</span>
+                    <span class="menu-item-price">250₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Mescal</span>
+                    <span class="menu-item-price">350₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Belfast</span>
+                    <span class="menu-item-price">350₺</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <div class="menu-item-header">
+                    <span class="menu-item-name">Jager</span>
+                    <span class="menu-item-price">200₺</span>
+                </div>
+            </div>
+        </div>
+        <p class="menu-note">Пожалуйста, сообщите нашему персоналу, если у вас есть аллергия на еду.</p>
+    </div>
+
+
+  <div class="wave"></div>
+  <div class="wave">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+  </div>
 </body>
 </html>
