@@ -10,7 +10,18 @@
   <meta property="og:image" content="https://www.finfethiye.com/og-image.jpg">
   <meta property="og:url" content="https://www.finfethiye.com">
   <meta name="theme-color" content="#f5f0e6">
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="FIN Fethiye">
+  <!-- SEO Meta Tags -->
+  <meta name="keywords" content="FIN, Fethiye, restoran, pub, deniz kenarı, kokteyl, yemek, Fethiye restoranları">
+  <meta name="author" content="FIN Fethiye">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.finfethiye.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&family=Roboto&display=swap" rel="stylesheet">
   <style>
     body {
@@ -39,6 +50,8 @@
       font-family: 'Montserrat', sans-serif;
       animation: slideDown 1.5s ease-out;
       z-index: 1;
+      transform: translateZ(0);
+      transition: transform 0.1s ease-out;
     }
 
     @keyframes slideDown {
@@ -67,6 +80,8 @@
       opacity: 0;
       animation: fadeIn 1s ease-in forwards;
       z-index: 1;
+      transform: translateZ(0);
+      transition: transform 0.1s ease-out;
     }
 
     .info:nth-of-type(2) { animation-delay: 1s; }
@@ -176,16 +191,42 @@
       cursor: pointer;
       border-radius: 5px;
       transition: all 0.3s ease;
+      transform: scale(1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .language-switcher button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .language-switcher button:hover::before {
+      left: 100%;
     }
 
     .language-switcher button:hover {
       background: rgb(120, 70, 60);
       color: white;
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(120,70,60,0.3);
     }
 
     .language-switcher button.active {
       background: rgb(120, 70, 60);
       color: white;
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(120,70,60,0.4);
+    }
+
+    .language-switcher button:active {
+      transform: scale(0.95);
     }
 
     [lang="en"], [lang="ru"] {
@@ -315,6 +356,89 @@
       #modal.menu-modal h3 {
         font-size: 1.05rem;
       }
+    }
+
+    /* Harita modalı için CSS */
+    #mapModal {
+      max-width: 90vw;
+      width: 600px;
+      height: 400px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #mapModal iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* Günün içkisi modalı için CSS */
+    #drinkModal {
+      max-width: 400px;
+      text-align: center;
+    }
+
+    #drinkModal .drink-name {
+      font-size: 1.5rem;
+      color: #7c463c;
+      margin-bottom: 1rem;
+    }
+
+    #drinkModal .drink-desc {
+      font-style: italic;
+      color: #8d7b6a;
+      margin-bottom: 1rem;
+    }
+
+    #drinkModal .drink-price {
+      font-weight: bold;
+      color: #a97c6c;
+      font-size: 1.2rem;
+    }
+
+    .action-links {
+      margin: 1em 0 0.5em 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7em 1.2em;
+      justify-content: center;
+    }
+    .action-links a {
+      display: flex;
+      align-items: center;
+      font-size: 1.08em;
+      color: #7c463c;
+      text-decoration: none;
+      font-weight: 500;
+      background: #f5f0e6;
+      border-radius: 6px;
+      padding: 0.25em 0.7em;
+      transition: background 0.2s, color 0.2s;
+      border: 1px solid #f5e6d6;
+    }
+    .action-links a:hover {
+      background: #7c463c;
+      color: #fffdfa;
+    }
+    .menu-btn {
+      display: inline-block;
+      margin-top: 1em;
+      padding: 0.6em 2em;
+      background: #7c463c;
+      color: #fffdfa;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.15em;
+      transition: background 0.2s;
+      border: none;
+      box-shadow: 0 2px 8px rgba(120,70,60,0.08);
+      letter-spacing: 1px;
+    }
+    .menu-btn:hover {
+      background: #a97c6c;
     }
   </style>
   <script>
@@ -522,7 +646,109 @@
     // Sayfa yüklendiğinde varsayılan dili ayarla
     document.addEventListener('DOMContentLoaded', () => {
       changeLanguage('tr');
+      
+      // Service Worker kayıt
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+          .then(registration => {
+            console.log('Service Worker kayıt edildi:', registration);
+          })
+          .catch(error => {
+            console.log('Service Worker kayıt hatası:', error);
+          });
+      }
+      
+      // Parallax efekti için mouse hareketi dinle
+      document.addEventListener('mousemove', (e) => {
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        
+        const brand = document.querySelector('.brand');
+        const infos = document.querySelectorAll('.info');
+        
+        if (brand) {
+          brand.style.transform = `translateZ(0) translate(${x * 10}px, ${y * 10}px)`;
+        }
+        
+        infos.forEach((info, index) => {
+          const delay = index * 0.1;
+          info.style.transform = `translateZ(0) translate(${x * (5 + delay)}px, ${y * (5 + delay)}px)`;
+        });
+      });
     });
+
+    // Push notification izin isteme
+    function requestNotificationPermission() {
+      if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+          if (permission === 'granted') {
+            console.log('Bildirim izni verildi');
+            // Test bildirimi gönder
+            new Notification('FIN Fethiye', {
+              body: 'Hoş geldiniz! Özel tekliflerimizi kaçırmayın.',
+              icon: '/icon-192.png'
+            });
+          }
+        });
+      }
+    }
+
+    // Fiyat güncelleme fonksiyonu
+    async function updatePrices() {
+      try {
+        const response = await fetch('./prices.json');
+        const priceData = await response.json();
+        
+        // Fiyatları güncelle (bu kısım daha gelişmiş olabilir)
+        console.log('Fiyatlar güncellendi:', priceData.lastUpdated);
+        
+        // Menü verisini güncelle
+        Object.keys(priceData.prices).forEach(key => {
+          // Burada menü verisini güncelleyebilirsin
+        });
+      } catch (error) {
+        console.log('Fiyat güncelleme hatası:', error);
+      }
+    }
+
+    // Harita gösterme fonksiyonu
+    function showMap() {
+      const lang = document.documentElement.lang;
+      const modal = document.getElementById('modal');
+      const title = lang === 'tr' ? 'FIN Konumu' : lang === 'en' ? 'FIN Location' : 'Расположение FIN';
+      
+      modal.innerHTML = `
+        <button class="close-btn" onclick="closeModal()" aria-label="Kapat">&times;</button>
+        <h2>${title}</h2>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.1234567890123!2d29.12345678901234!3d36.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDA3JzM0LjQiTiAyOcKwMDcnMzQuNCJF!5e0!3m2!1str!2str!4v1234567890123" allowfullscreen="" loading="lazy"></iframe>
+      `;
+      modal.classList.add('show', 'menu-modal', 'map-modal');
+    }
+
+    // Günün içkisi fonksiyonu
+    function showDrinkOfTheDay() {
+      const lang = document.documentElement.lang;
+      const modal = document.getElementById('modal');
+      const menu = menuData[lang];
+      
+      if (!menu) return;
+      
+      // Kokteyllerden rastgele birini seç
+      const cocktails = menu.cocktails.filter(item => item.description); // Sadece açıklaması olanları
+      const randomDrink = cocktails[Math.floor(Math.random() * cocktails.length)];
+      
+      const title = lang === 'tr' ? '🍹 Günün İçkisi' : lang === 'en' ? '🍹 Drink of the Day' : '🍹 Напиток дня';
+      
+      modal.innerHTML = `
+        <button class="close-btn" onclick="closeModal()" aria-label="Kapat">&times;</button>
+        <h2>${title}</h2>
+        <div class="drink-name">${randomDrink.name}</div>
+        <div class="drink-desc">${randomDrink.description}</div>
+        ${randomDrink.price ? `<div class="drink-price">${randomDrink.price}</div>` : ''}
+        <button onclick="showDrinkOfTheDay()" style="margin-top:1rem; padding: 0.5rem 1rem; background: #7c463c; color: white; border: none; border-radius: 5px; cursor: pointer;">${lang === 'tr' ? 'Başka Bir İçki' : lang === 'en' ? 'Another Drink' : 'Другой напиток'}</button>
+      `;
+      modal.classList.add('show', 'menu-modal', 'drink-modal');
+    }
   </script>
 </head>
 <body>
@@ -541,42 +767,33 @@
 
   <div class="info" lang="tr">
     <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foça, 1054. Sk. 102/A, 48300 Fethiye/Muğla</a>
+    <div class="action-links">
+      <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Yol Tarifi</a>
+      <a href="https://wa.me/905068580000" target="_blank">💬 WhatsApp</a>
+      <a href="https://www.instagram.com/finfethiye/" target="_blank">📸 Instagram</a>
+      <a href="#" onclick="showDrinkOfTheDay(); return false;">🍹 Günün İçkisi</a>
+    </div>
+    <a href="#" onclick="showModal(); return false;" class="menu-btn">Menüyü Gör</a>
   </div>
   <div class="info" lang="en">
     <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foca, 1054. St. 102/A, 48300 Fethiye/Mugla</a>
+    <div class="action-links">
+      <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Get Directions</a>
+      <a href="https://wa.me/905068580000" target="_blank">💬 WhatsApp</a>
+      <a href="https://www.instagram.com/finfethiye/" target="_blank">📸 Instagram</a>
+      <a href="#" onclick="showDrinkOfTheDay(); return false;">🍹 Drink of the Day</a>
+    </div>
+    <a href="#" onclick="showModal(); return false;" class="menu-btn">View Menu</a>
   </div>
   <div class="info" lang="ru">
     <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Фоча, ул. 1054, 102/A, 48300 Фетхие/Мугла</a>
-  </div>
-
-  <div class="info" lang="tr">
-    <a href="tel:+905068580000">+90 506 858 00 00</a>
-  </div>
-  <div class="info" lang="en">
-    <a href="tel:+905068580000">+90 506 858 00 00</a>
-  </div>
-  <div class="info" lang="ru">
-    <a href="tel:+905068580000">+90 506 858 00 00</a>
-  </div>
-
-  <div class="info" lang="tr">
-    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
-  </div>
-  <div class="info" lang="en">
-    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
-  </div>
-  <div class="info" lang="ru">
-    <a href="https://www.instagram.com/finfethiye/" target="_blank">Instagram</a>
-  </div>
-
-  <div class="info" lang="tr">
-    <a href="#" onclick="showModal(); return false;">Menüyü Gör</a>
-  </div>
-  <div class="info" lang="en">
-    <a href="#" onclick="showModal(); return false;">View Menu</a>
-  </div>
-  <div class="info" lang="ru">
-    <a href="#" onclick="showModal(); return false;">Посмотреть Меню</a>
+    <div class="action-links">
+      <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Маршрут</a>
+      <a href="https://wa.me/905068580000" target="_blank">💬 WhatsApp</a>
+      <a href="https://www.instagram.com/finfethiye/" target="_blank">📸 Instagram</a>
+      <a href="#" onclick="showDrinkOfTheDay(); return false;">🍹 Напиток дня</a>
+    </div>
+    <a href="#" onclick="showModal(); return false;" class="menu-btn">Посмотреть Меню</a>
   </div>
 
   <div id="modal" class="modal"></div>
