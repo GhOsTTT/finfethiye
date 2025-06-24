@@ -443,6 +443,8 @@
   </style>
   <script>
     // Menü verisini ekliyorum
+    <script>
+    // Menü verisini ekliyorum
     const menuData = {
       tr: {
         tastes: [
@@ -459,22 +461,24 @@
           { name: "CHERRY PIE", description: "VİŞNE EKŞİSİ, İSLİ İSKOÇ VİSKİSİ, LİME, VANİLYA TENTÜRÜ, PORTAKAL BİTTERİ - meyvemsi tatlı sert" },
           { name: "YES PLEASE", description: "TEKİLA & MEZCAL KARIŞIMI, PASSION FRUIT, LİME, URFA İSOT, LİMONOTU - hafif acı tatlı ekşi sert" },
           { name: "LET'S GO MATE", description: "ZACAPA 23, ANANAS, YEŞİL ÇAY, LİME, AROMATİK BAHARATLAR - tropik hafif tatlı soyut" },
-          { name: "MEANWHILE KAYAKÖY", description: "TAZE İNCİR YAPRAĞI, VOTKA, MÜRVER ÇİÇEĞİ, ASİDİK ÇÖZELTİLER, PROSECCO - çiçeksi asidik ferah" },
+          { name: "MEANWHILE KAYAKÖY", description: "TAZE İNCİR YAPRAĞI, VOTKA, MÜRVER ÇİÇEĞI, ASİDİK ÇÖZELTİLER, PROSECCO - çiçeksi asidik ferah" },
           { name: "RITUEL", description: "KIRMIZI MEYVELER, CİN, PALO SANTO, AROMATİZE KIRMIZI ŞARAP, BAHÇE LİMONU - tatlı ekşi meyvemsi" },
           { name: "Classic Cocktails", price: "450₺", description: "Barımızda klasiklere de yer var, sipariş için servis ekibimize danışın." }
         ],
         neatNoble: [
-          { name: "BEER IMPORT", price: "250₺", description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks" },
-          { name: "LOCAL", price: "180₺", description: "Bomonti, Efes malt, Efes premium, Efes" },
-          { name: "DRAFT", price: "120/150₺" },
-          { name: "Jameson", price: "400/550₺" },
-          { name: "Glenfiddich", price: "550/650₺" },
+          // GÜNCELLENEN VE EKLENEN BİRALAR
+          { name: "BEER IMPORT", price: "250₺", description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" },
+          { name: "LOCAL", price: "180₺", description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" },
+          { name: "FIÇI EFES", price: "150₺" },
+          { name: "FIÇI BECKS", price: "160₺" },
+          // GÜNCELLENEN FİYATLAR
+          { name: "Jameson", price: "400/650₺" },
+          { name: "Glenfiddich", price: "550/850₺" },
           { name: "Talisker 10", price: "650/800₺" },
           { name: "Beefeater", price: "350₺" },
-          { name: "Malfy", price: "550₺" },
+          { name: "Malfy", price: "500₺" },
           { name: "Dead Man's Finger", price: "250₺" },
           { name: "Mescal", price: "350₺" },
-          { name: "Belfast", price: "350₺" },
           { name: "Jager", price: "200₺" }
         ],
         allergyNote: "Herhangi bir gıda alerjiniz varsa lütfen personelimize bildiriniz.",
@@ -500,17 +504,19 @@
           { name: "Classic Cocktails", price: "450₺", description: "We also have classics at our bar, please ask our service team to order." }
         ],
         neatNoble: [
-          { name: "BEER IMPORT", price: "250₺", description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks" },
-          { name: "LOCAL", price: "180₺", description: "Bomonti, Efes malt, Efes premium, Efes" },
-          { name: "DRAFT", price: "120/150₺" },
-          { name: "Jameson", price: "400/550₺" },
-          { name: "Glenfiddich", price: "550/650₺" },
+          // UPDATED AND ADDED BEERS
+          { name: "BEER IMPORT", price: "250₺", description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" },
+          { name: "LOCAL", price: "180₺", description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" },
+          { name: "DRAFT EFES", price: "150₺" },
+          { name: "DRAFT BECKS", price: "160₺" },
+          // UPDATED PRICES
+          { name: "Jameson", price: "400/650₺" },
+          { name: "Glenfiddich", price: "550/850₺" },
           { name: "Talisker 10", price: "650/800₺" },
           { name: "Beefeater", price: "350₺" },
-          { name: "Malfy", price: "550₺" },
+          { name: "Malfy", price: "500₺" },
           { name: "Dead Man's Finger", price: "250₺" },
           { name: "Mescal", price: "350₺" },
-          { name: "Belfast", price: "350₺" },
           { name: "Jager", price: "200₺" }
         ],
         allergyNote: "Please inform our staff if you have any food allergies.",
@@ -536,14 +542,17 @@
           { name: "Классические Коктейли", price: "450₺", description: "У нас в баре также есть классические коктейли, пожалуйста, обратитесь к нашему обслуживающему персоналу для заказа." }
         ],
         neatNoble: [
-          { name: "BEER IMPORT", price: "250₺", description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks" },
-          { name: "LOCAL", price: "180₺", description: "Bomonti, Efes malt, Efes premium, Efes" },
-          { name: "DRAFT", price: "120/150₺" },
-          { name: "Jameson", price: "400/550₺" },
-          { name: "Glenfiddich", price: "550/650₺" },
+          // ОБНОВЛЕННОЕ И ДОБАВЛЕННОЕ ПИВО
+          { name: "BEER IMPORT", price: "250₺", description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" },
+          { name: "LOCAL", price: "180₺", description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" },
+          { name: "БОЧКОВОЕ EFES", price: "150₺" },
+          { name: "БОЧКОВОЕ BECKS", price: "160₺" },
+           // ОБНОВЛЕННЫЕ ЦЕНЫ
+          { name: "Jameson", price: "400/650₺" },
+          { name: "Glenfiddich", price: "550/850₺" },
           { name: "Talisker 10", price: "650/800₺" },
           { name: "Beefeater", price: "350₺" },
-          { name: "Malfy", price: "550₺" },
+          { name: "Malfy", price: "500₺" },
           { name: "Dead Man's Finger", price: "250₺" },
           { name: "Mescal", price: "350₺" },
           { name: "Belfast", price: "350₺" },
@@ -553,6 +562,7 @@
         handmadeNote: "Все наши продукты ручной работы."
       }
     };
+  
 
     function showModal() {
       const lang = document.documentElement.lang;
