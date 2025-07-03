@@ -83,11 +83,6 @@
       transition: transform 0.1s ease-out;
     }
 
-    .info:nth-of-type(2) { animation-delay: 1s; }
-    .info:nth-of-type(3) { animation-delay: 1.2s; }
-    .info:nth-of-type(4) { animation-delay: 1.4s; }
-    .info:nth-of-type(5) { animation-delay: 1.6s; }
-
     a {
       color: rgb(120, 70, 60);
       text-decoration: none;
@@ -106,7 +101,8 @@
       height: 25vh;
       overflow: hidden;
       z-index: 0;
-      transition: height 0.3s ease; /* Yükseklik değişimine yumuşak geçiş */
+      transition: height 0.3s ease;
+      pointer-events: none;
     }
 
     .wave {
@@ -114,7 +110,6 @@
       width: 200%;
       height: 100%;
       background-repeat: repeat-x;
-      /* --- GÜNCELLEME: Dalga animasyonundaki boşlukları gidermek için --- */
       background-size: calc(50% + 2px) 100%;
       animation: waveAnim 10s linear infinite;
       opacity: 0.7;
@@ -165,6 +160,13 @@
       top: 20px;
       right: 20px;
       z-index: 1001;
+      /* --- GÜNCELLEME: Konum değişimini yumuşatmak için --- */
+      transition: top 0.4s ease;
+    }
+    
+    /* --- YENİ KURAL: Modal açıkken dil değiştiriciyi aşağı kaydır --- */
+    body.modal-is-open .language-switcher {
+        top: 60px;
     }
 
     .language-switcher button {
@@ -228,7 +230,6 @@
     .menu-btn { display: inline-block; margin-top: 1em; padding: 0.6em 2em; background: #7c463c; color: #fffdfa; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 1.15em; transition: background 0.2s; border: none; box-shadow: 0 2px 8px rgba(120,70,60,0.08); letter-spacing: 1px; }
     .menu-btn:hover { background: #a97c6c; }
 
-    /* --- GÜNCELLEME: Mobil cihazlar için özel stiller --- */
     @media (max-width: 600px) {
       #modal.menu-modal { 
         width: 95vw; 
@@ -237,15 +238,12 @@
       }
       #modal.menu-modal h2 { font-size: 1.5rem; }
       #modal.menu-modal h3 { font-size: 1.1rem; }
-
-      /* Mobil cihazlarda dalgaları büyüt */
       .wave-container {
         height: 35vh;
       }
     }
   </style>
   <script>
-    // --- MERKEZİ FİYAT LİSTESİ ---
     const prices = {
       octopus: "560₺", islandSting: "560₺", fireGlaze: "450₺", fries: "200₺", crispyPlate: "650₺",
       signatureCocktail: "560₺", classicCocktail: "600₺",
@@ -254,7 +252,6 @@
       malfy: "600₺", deadMansFinger: "250₺", mescal: "350₺", jager: "250₺"
     };
 
-    // --- MENÜ VERİLERİ ---
     const menuData = {
       tr: {
         tastes: [ { name: "ALEVDE MÜHÜRLENMİŞ, ÖZEL MARİNE EDİLMİŞ TAZE AHTAPOT ŞİŞ", price: prices.octopus, description: "KIZARMIŞ ARMUT EŞLİĞİNDE." }, { name: "ISLAND STING", price: prices.islandSting, description: "JUMBO KARİDES VE KÖZLENMİŞ ANANAS ŞİŞE DİZİLİR, IZGARADA TROPİK TATLARLA PİŞİRİLİR." }, { name: "FIRE GLAZE", price: prices.fireGlaze, description: "BİRA İLE MARİNE EDİLMİŞ ÇITIR TAVUK, PANKO İLE KAPLANIR: TATLI ACI SOS, SARIMSAK, BAL VE HAFİF SOYA SOSUYLA LEZZETLENDİRİLİR." }, { name: "PATATES KIZARTMASI", price: prices.fries }, { name: "CRISPY PLATE", price: prices.crispyPlate, description: "ÇITIR TAVUK, SOSİS VE PATATES KIZARMASI." } ],
@@ -317,6 +314,8 @@
     function showModal(type) {
         populateModalContent(type);
         document.getElementById('modal').classList.add('show');
+        // --- GÜNCELLEME: Modal açıldığında body'e class ekle ---
+        document.body.classList.add('modal-is-open');
     }
     
     function showMenu() { showModal('menu'); }
@@ -324,10 +323,13 @@
 
     function closeModal() {
         document.getElementById('modal').classList.remove('show');
+        // --- GÜNCELLEME: Modal kapandığında body'den class'ı kaldır ---
+        document.body.classList.remove('modal-is-open');
     }
 
     document.addEventListener('click', function(event) {
         const modal = document.getElementById('modal');
+        // Modal'ın kendisine (arkasına) tıklanınca kapat
         if (event.target === modal) {
             closeModal();
         }
