@@ -81,11 +81,9 @@
 
     .language-switcher {
       position: fixed; top: 20px; right: 20px; z-index: 1001;
-      /* --- GÜNCELLEME: Görünürlük animasyonu için --- */
       opacity: 1;
       transition: opacity 0.4s ease;
     }
-    /* --- GÜNCELLEME: Modal açıkken dil değiştiriciyi gizle --- */
     body.modal-is-open .language-switcher {
       opacity: 0;
       pointer-events: none;
@@ -148,21 +146,52 @@
     const menuContent = {
         tr: {
             tastes: [ { name: "ALEVDE MÜHÜRLENMİŞ TAZE AHTAPOT ŞİŞ", price: prices.octopus, description: "KIZARMIŞ ARMUT EŞLİĞİNDE." }, { name: "ISLAND STING", price: prices.islandSting, description: "JUMBO KARİDES VE KÖZLENMİŞ ANANAS." }, { name: "FIRE GLAZE", price: prices.fireGlaze, description: "BİRA İLE MARİNE EDİLMİŞ ÇITIR TAVUK." }, { name: "PATATES KIZARTMASI", price: prices.fries }, { name: "CRISPY PLATE", price: prices.crispyPlate, description: "ÇITIR TAVUK, SOSİS VE PATATES." } ],
-            cocktails: [ { name: "Signature Cocktails", price: prices.signatureCocktail }, { name: "ITIR", description: "ITIR YAPRAĞI, CİN, YEŞİL ELMA, BEYAZ VERMUT." }, { name: "NORMAL", description: "PAPATYALI VOTKA, KUZUKULAĞI, BEYAZ ŞARAP." }, { name: "Classic Cocktails", price: prices.classicCocktail, description: "Barımızda klasiklere de yer var." } ],
+            cocktails: [
+                // DÜZELTME: Eksik kokteyller eklendi
+                { name: "Signature Cocktails", price: prices.signatureCocktail },
+                { name: "ITIR", description: "ITIR YAPRAĞI, CİN, YEŞİL ELMA ASİDİ, BEYAZ VERMUT, BAHÇE LİMONU - tatı ekşi ferah" },
+                { name: "NORMAL", description: "PAPATYALI VOTKA, KUZUKULAĞI, ASİDİK BEYAZ ŞARAP, YEŞİL ERİK - ekşi asidik ferah" },
+                { name: "CHERRY PIE", description: "VİŞNE EKŞİSİ, İSLİ İSKOÇ VİSKİSİ, LİME, VANİLYA TENTÜRÜ, PORTAKAL BİTTERİ - meyvemsi tatlı sert" },
+                { name: "YES PLEASE", description: "TEKİLA & MEZCAL KARIŞIMI, PASSION FRUIT, LİME, URFA İSOT, LİMONOTU - hafif acı tatlı ekşi sert" },
+                { name: "LET'S GO MATE", description: "ZACAPA 23, ANANAS, YEŞİL ÇAY, LİME, AROMATİK BAHARATLAR - tropik hafif tatlı soyut" },
+                { name: "MEANWHILE KAYAKÖY", description: "TAZE İNCİR YAPRAĞI, VOTKA, MÜRVER ÇİÇEĞI, ASİDİK ÇÖZELTİLER, PROSECCO - çiçeksi asidik ferah" },
+                { name: "RITUEL", description: "KIRMIZI MEYVELER, CİN, PALO SANTO, AROMATİZE KIRMIZI ŞARAP, BAHÇE LİMONU - tatlı ekşi meyvemsi" },
+                { name: "Classic Cocktails", price: prices.classicCocktail, description: "Barımızda klasiklere de yer var, sipariş için servis ekibimize danışın." }
+            ],
             neatNoble: [ { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, { name: "FIÇI EFES", price: prices.draftEfes }, { name: "FIÇI BECKS", price: prices.draftBecks }, { name: "Jameson", price: prices.jameson }, { name: "Glenfiddich", price: prices.glenfiddich }, { name: "Talisker 10", price: prices.talisker }, { name: "Beefeater", price: prices.beefeater }, { name: "Malfy", price: prices.malfy }, { name: "Dead Man's Finger", price: prices.deadMansFinger }, { name: "Mescal", price: prices.mescal }, { name: "Jager", price: prices.jager } ],
             notes: { allergy: "Herhangi bir gıda alerjiniz varsa lütfen personelimize bildiriniz.", handmade: "Tüm ürünlerimiz el yapımıdır." },
             titles: { menu: "Menü", tastes: "Tatlar", cocktails: "Kokteyller", neatNoble: "Neat & Noble" }
         },
         en: {
             tastes: [ { name: "FLAME-SEARED FRESH OCTOPUS SKEWER", price: prices.octopus, description: "SERVED WITH ROASTED PEAR." }, { name: "ISLAND STING", price: prices.islandSting, description: "JUMBO SHRIMP AND ROASTED PINEAPPLE." }, { name: "FIRE GLAZE", price: prices.fireGlaze, description: "CRISPY CHICKEN MARINATED WITH BEER." }, { name: "FRENCH FRIES", price: prices.fries }, { name: "CRISPY PLATE", price: prices.crispyPlate, description: "CRISPY CHICKEN, SAUSAGE AND FRIES." } ],
-            cocktails: [ { name: "Signature Cocktails", price: prices.signatureCocktail }, { name: "ITIR", description: "GERANIUM LEAF, GIN, GREEN APPLE, WHITE VERMOUTH." }, { name: "NORMAL", description: "CHAMOMILE VODKA, SORREL, WHITE WINE." }, { name: "Classic Cocktails", price: prices.classicCocktail, description: "We also have classics at our bar." } ],
+            cocktails: [
+                { name: "Signature Cocktails", price: prices.signatureCocktail },
+                { name: "ITIR", description: "GERANIUM LEAF, GIN, GREEN APPLE ACID, WHITE VERMOUTH, GARDEN LEMON - sour refreshing taste" },
+                { name: "NORMAL", description: "CHAMOMILE VODKA, SORREL, ACIDIC WHITE WINE, GREEN PLUM - sour acidic refreshing" },
+                { name: "CHERRY PIE", description: "SOUR CHERRY, SMOKED SCOTCH WHISKY, LIME, VANILLA TINCTURE, ORANGE BITTERS - fruity sweet strong" },
+                { name: "YES PLEASE", description: "TEQUILA & MEZCAL BLEND, PASSION FRUIT, LIME, URFA ISOT, LEMONGRASS - slightly spicy sweet sour strong" },
+                { name: "LET'S GO MATE", description: "ZACAPA 23, PINEAPPLE, GREEN TEA, LIME, AROMATIC SPICES - tropical lightly sweet abstract" },
+                { name: "MEANWHILE KAYAKÖY", description: "FRESH FIG LEAF, VODKA, ELDERFLOWER, ACIDIC SOLUTIONS, PROSECCO - floral acidic refreshing" },
+                { name: "RITUEL", description: "RED BERRIES, GIN, PALO SANTO, FLAVORED RED WINE, GARDEN LEMON - sweet sour fruity" },
+                { name: "Classic Cocktails", price: prices.classicCocktail, description: "We also have classics at our bar, please ask our service team to order." }
+            ],
             neatNoble: [ { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, { name: "DRAFT EFES", price: prices.draftEfes }, { name: "DRAFT BECKS", price: prices.draftBecks }, { name: "Jameson", price: prices.jameson }, { name: "Glenfiddich", price: prices.glenfiddich }, { name: "Talisker 10", price: prices.talisker }, { name: "Beefeater", price: prices.beefeater }, { name: "Malfy", price: prices.malfy }, { name: "Dead Man's Finger", price: prices.deadMansFinger }, { name: "Mescal", price: prices.mescal }, { name: "Jager", price: prices.jager } ],
             notes: { allergy: "Please inform our staff if you have any food allergies.", handmade: "All our products are handmade." },
             titles: { menu: "Menu", tastes: "Tastes", cocktails: "Cocktails", neatNoble: "Neat & Noble" }
         },
         ru: {
             tastes: [ { name: "ОСЬМИНОГ НА ГРИЛЕ НА ШПАЖКЕ", price: prices.octopus, description: "ПОДАЕТСЯ С ЖАРЕНОЙ ГРУШЕЙ." }, { name: "ОСТРОВНОЙ УЖАЛ", price: prices.islandSting, description: "БОЛЬШИЕ КРЕВЕТКИ И ЖАРЕНЫЙ АНАНАС." }, { name: "ОГНЕННАЯ ГЛАЗУРЬ", price: prices.fireGlaze, description: "ХРУСТЯЩАЯ КУРИЦА, МАРИНОВАННАЯ В ПИВЕ." }, { name: "КАРТОФЕЛЬ ФРИ", price: prices.fries }, { name: "ХРУСТЯЩАЯ ТАРЕЛКА", price: prices.crispyPlate, description: "ХРУСТЯЩАЯ КУРИЦА, КОЛБАСКИ И КАРТОФЕЛЬ." } ],
-            cocktails: [ { name: "Авторские Коктейли", price: prices.signatureCocktail }, { name: "ИТИР", description: "ЛИСТ ГЕРАНИ, ДЖИН, ЗЕЛЕНОЕ ЯБЛОКО, БЕЛЫЙ ВЕРМУТ." }, { name: "НОРМАЛЬНЫЙ", description: "ВОДКА НА РОМАШКЕ, ЩАВЕЛЬ, БЕЛОЕ ВИНО." }, { name: "Классические Коктейли", price: prices.classicCocktail, description: "В нашем баре также есть классика." } ],
+            cocktails: [
+                { name: "Авторские Коктейли", price: prices.signatureCocktail },
+                { name: "ИТИР", description: "ЛИСТ ГЕРАНИ, ДЖИН, ЗЕЛЕНОЕ ЯБЛОКО, БЕЛЫЙ ВЕРМУТ." },
+                { name: "НОРМАЛЬНЫЙ", description: "ВОДКА НА РОМАШКЕ, ЩАВЕЛЬ, БЕЛОЕ ВИНО." },
+                { name: "ВИШНЕВЫЙ ПИРОГ", description: "ВИШНЕВАЯ КИСЛОТА, КОПЧЕНЫЙ ШОТЛАНДСКИЙ ВИСКИ, ЛАЙМ, ВАНИЛЬ - фруктовый, сладкий, крепкий" },
+                { name: "ДА, ПОЖАЛУЙСТА", description: "СМЕСЬ ТЕКИЛЫ И МЕСКАЛЯ, МАРАКУЙЯ, ЛАЙМ, УРФА ИСОТ, ЛЕМОНГРАСС - острый, сладкий, кислый, крепкий" },
+                { name: "ПОЙДЕМ, ДРУГ", description: "ZACAPA 23, АНАНАС, ЗЕЛЕНЫЙ ЧАЙ, ЛАЙМ, АРОМАТИЧЕСКИЕ СПЕЦИИ - тропический, сладкий" },
+                { name: "ТЕМ ВРЕМЕНЕМ, КАЯКЁЙ", description: "СВЕЖИЙ ИНЖИРНЫЙ ЛИСТ, ВОДКА, ЦВЕТОК БУЗИНЫ, ПРОСЕККО - цветочный, кислотный, освежающий" },
+                { name: "РИТУАЛ", description: "КРАСНЫЕ ЯГОДЫ, ДЖИН, ПАЛО САНТО, КРАСНОЕ ВИНО, САДОВЫЙ ЛИМОН - сладкий, кислый, фруктовый" },
+                { name: "Классические Коктейли", price: prices.classicCocktail, description: "В нашем баре также есть классика." }
+            ],
             neatNoble: [ { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, { name: "БОЧКОВОЕ EFES", price: prices.draftEfes }, { name: "БОЧКОВОЕ BECKS", price: prices.draftBecks }, { name: "Jameson", price: prices.jameson }, { name: "Glenfiddich", price: prices.glenfiddich }, { name: "Talisker 10", price: prices.talisker }, { name: "Beefeater", price: prices.beefeater }, { name: "Malfy", price: prices.malfy }, { name: "Dead Man's Finger", price: prices.deadMansFinger }, { name: "Mescal", price: prices.mescal }, { name: "Jager", price: prices.jager } ],
             notes: { allergy: "Пожалуйста, сообщите персоналу, если у вас есть пищевая аллергия.", handmade: "Все наши продукты ручной работы." },
             titles: { menu: "Меню", tastes: "Вкусы", cocktails: "Коктейли", neatNoble: "Neat & Noble" }
