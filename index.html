@@ -46,7 +46,7 @@
     }
     .brand .main { font-weight: 700; font-size: 20vh; color: rgb(120, 70, 60); margin: 0; }
     .brand .sub { font-weight: 300; font-size: 2vh; color: rgb(120, 70, 60); margin: -1rem 0 3rem; animation: fadeIn 2.5s ease-in; }
-    .info { font-size: 1rem; margin: 0.5rem 0; opacity: 0; animation: fadeIn 1s ease-in forwards; z-index: 1; }
+    .info { font-size: 1rem; margin: 0.5rem 0; opacity: 1; z-index: 1; }
     a { color: rgb(120, 70, 60); text-decoration: none; transition: color 0.3s ease; }
     a:hover { color: rgb(90, 50, 40); }
 
@@ -80,9 +80,16 @@
     .modal.show { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
 
     .language-switcher {
-      position: fixed; top: 20px; right: 20px; z-index: 1001; transition: top 0.4s ease;
+      position: fixed; top: 20px; right: 20px; z-index: 1001;
+      /* --- GÜNCELLEME: Görünürlük animasyonu için --- */
+      opacity: 1;
+      transition: opacity 0.4s ease;
     }
-    body.modal-is-open .language-switcher { top: 60px; }
+    /* --- GÜNCELLEME: Modal açıkken dil değiştiriciyi gizle --- */
+    body.modal-is-open .language-switcher {
+      opacity: 0;
+      pointer-events: none;
+    }
     .language-switcher button {
       background: none; border: 1px solid rgb(120, 70, 60); color: rgb(120, 70, 60);
       padding: 5px 10px; margin: 0 5px; cursor: pointer; border-radius: 5px; transition: all 0.3s ease;
@@ -90,16 +97,13 @@
     .language-switcher button:hover { background: rgb(120, 70, 60); color: white; }
     .language-switcher button.active { background: rgb(120, 70, 60); color: white; transform: scale(1.1); }
 
-    /* --- GÜNCELLENMİŞ VE DAHA SAĞLAM DİL GÖSTERİMİ MANTIĞI --- */
-    /* Varsayılan olarak tüm dil bloklarını gizle */
-    .info[lang], #modal [lang] {
-        display: none;
+    .lang-block {
+      display: none;
     }
-    /* Sadece aktif olan dilin bloklarını göster */
-    html[lang="tr"] [lang="tr"],
-    html[lang="en"] [lang="en"],
-    html[lang="ru"] [lang="ru"] {
-        display: block;
+    html[lang="tr"] .lang-block[lang="tr"],
+    html[lang="en"] .lang-block[lang="en"],
+    html[lang="ru"] .lang-block[lang="ru"] {
+      display: block;
     }
     
     #modal.menu-modal {
@@ -133,7 +137,6 @@
     }
   </style>
   <script>
-    // --- MERKEZİ FİYAT LİSTESİ ---
     const prices = {
       octopus: "560₺", islandSting: "560₺", fireGlaze: "450₺", fries: "200₺", crispyPlate: "650₺",
       signatureCocktail: "560₺", classicCocktail: "600₺",
@@ -142,80 +145,56 @@
       malfy: "600₺", deadMansFinger: "250₺", mescal: "350₺", jager: "250₺"
     };
 
-    // --- GÜNCELLENMİŞ MENÜ VERİ YAPISI ---
-    const menuData = {
-        // Genel metinler (başlıklar, notlar vb.)
-        text: {
-            tr: { menuTitle: "Menü", tastesTitle: "Tatlar", cocktailsTitle: "Kokteyller", neatNobleTitle: "Neat & Noble", allergyNote: "Herhangi bir gıda alerjiniz varsa lütfen personelimize bildiriniz.", handmadeNote: "Tüm ürünlerimiz el yapımıdır." },
-            en: { menuTitle: "Menu", tastesTitle: "Tastes", cocktailsTitle: "Cocktails", neatNobleTitle: "Neat & Noble", allergyNote: "Please inform our staff if you have any food allergies.", handmadeNote: "All our products are handmade." },
-            ru: { menuTitle: "Меню", tastesTitle: "Вкусы", cocktailsTitle: "Коктейли", neatNobleTitle: "Neat & Noble", allergyNote: "Пожалуйста, сообщите персоналу, если у вас есть пищевая аллергия.", handmadeNote: "Все наши продукты ручной работы." }
+    const menuContent = {
+        tr: {
+            tastes: [ { name: "ALEVDE MÜHÜRLENMİŞ TAZE AHTAPOT ŞİŞ", price: prices.octopus, description: "KIZARMIŞ ARMUT EŞLİĞİNDE." }, { name: "ISLAND STING", price: prices.islandSting, description: "JUMBO KARİDES VE KÖZLENMİŞ ANANAS." }, { name: "FIRE GLAZE", price: prices.fireGlaze, description: "BİRA İLE MARİNE EDİLMİŞ ÇITIR TAVUK." }, { name: "PATATES KIZARTMASI", price: prices.fries }, { name: "CRISPY PLATE", price: prices.crispyPlate, description: "ÇITIR TAVUK, SOSİS VE PATATES." } ],
+            cocktails: [ { name: "Signature Cocktails", price: prices.signatureCocktail }, { name: "ITIR", description: "ITIR YAPRAĞI, CİN, YEŞİL ELMA, BEYAZ VERMUT." }, { name: "NORMAL", description: "PAPATYALI VOTKA, KUZUKULAĞI, BEYAZ ŞARAP." }, { name: "Classic Cocktails", price: prices.classicCocktail, description: "Barımızda klasiklere de yer var." } ],
+            neatNoble: [ { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, { name: "FIÇI EFES", price: prices.draftEfes }, { name: "FIÇI BECKS", price: prices.draftBecks }, { name: "Jameson", price: prices.jameson }, { name: "Glenfiddich", price: prices.glenfiddich }, { name: "Talisker 10", price: prices.talisker }, { name: "Beefeater", price: prices.beefeater }, { name: "Malfy", price: prices.malfy }, { name: "Dead Man's Finger", price: prices.deadMansFinger }, { name: "Mescal", price: prices.mescal }, { name: "Jager", price: prices.jager } ],
+            notes: { allergy: "Herhangi bir gıda alerjiniz varsa lütfen personelimize bildiriniz.", handmade: "Tüm ürünlerimiz el yapımıdır." },
+            titles: { menu: "Menü", tastes: "Tatlar", cocktails: "Kokteyller", neatNoble: "Neat & Noble" }
         },
-        // Menü kalemleri ve çevirileri
-        items: {
-            tastes: [
-                { id: 'octopus', price: true, tr: { name: "ALEVDE MÜHÜRLENMİŞ TAZE AHTAPOT ŞİŞ", description: "KIZARMIŞ ARMUT EŞLİĞİNDE." }, en: { name: "FLAME-SEARED FRESH OCTOPUS SKEWER", description: "SERVED WITH ROASTED PEAR." }, ru: { name: "ОСЬМИНОГ НА ГРИЛЕ НА ШПАЖКЕ", description: "ПОДАЕТСЯ С ЖАРЕНОЙ ГРУШЕЙ." } },
-                { id: 'islandSting', price: true, tr: { name: "ISLAND STING", description: "JUMBO KARİDES VE KÖZLENMİŞ ANANAS." }, en: { name: "ISLAND STING", description: "JUMBO SHRIMP AND ROASTED PINEAPPLE." }, ru: { name: "ОСТРОВНОЙ УЖАЛ", description: "БОЛЬШИЕ КРЕВЕТКИ И ЖАРЕНЫЙ АНАНАС." } },
-                { id: 'fireGlaze', price: true, tr: { name: "FIRE GLAZE", description: "BİRA İLE MARİNE EDİLMİŞ ÇITIR TAVUK." }, en: { name: "FIRE GLAZE", description: "CRISPY CHICKEN MARINATED WITH BEER." }, ru: { name: "ОГНЕННАЯ ГЛАЗУРЬ", description: "ХРУСТЯЩАЯ КУРИЦА, МАРИНОВАННАЯ В ПИВЕ." } },
-                { id: 'fries', price: true, tr: { name: "PATATES KIZARTMASI" }, en: { name: "FRENCH FRIES" }, ru: { name: "КАРТОФЕЛЬ ФРИ" } },
-                { id: 'crispyPlate', price: true, tr: { name: "CRISPY PLATE", description: "ÇITIR TAVUK, SOSİS VE PATATES." }, en: { name: "CRISPY PLATE", description: "CRISPY CHICKEN, SAUSAGE AND FRIES." }, ru: { name: "ХРУСТЯЩАЯ ТАРЕЛКА", description: "ХРУСТЯЩАЯ КУРИЦА, КОЛБАСКИ И КАРТОФЕЛЬ." } }
-            ],
-            cocktails: [
-                { id: 'signatureCocktail', price: true, tr: { name: "Signature Cocktails" }, en: { name: "Signature Cocktails" }, ru: { name: "Авторские Коктейли" } },
-                { id: 'itir', tr: { name: "ITIR", description: "ITIR YAPRAĞI, CİN, YEŞİL ELMA, BEYAZ VERMUT." }, en: { name: "ITIR", description: "GERANIUM LEAF, GIN, GREEN APPLE, WHITE VERMOUTH." }, ru: { name: "ИТИР", description: "ЛИСТ ГЕРАНИ, ДЖИН, ЗЕЛЕНОЕ ЯБЛОКО, БЕЛЫЙ ВЕРМУТ." } },
-                { id: 'normal', tr: { name: "NORMAL", description: "PAPATYALI VOTKA, KUZUKULAĞI, BEYAZ ŞARAP." }, en: { name: "NORMAL", description: "CHAMOMILE VODKA, SORREL, WHITE WINE." }, ru: { name: "НОРМАЛЬНЫЙ", description: "ВОДКА НА РОМАШКЕ, ЩАВЕЛЬ, БЕЛОЕ ВИНО." } },
-                { id: 'classicCocktail', price: true, tr: { name: "Classic Cocktails", description: "Barımızda klasiklere de yer var." }, en: { name: "Classic Cocktails", description: "We also have classics at our bar." }, ru: { name: "Классические Коктейли", description: "В нашем баре также есть классика." } }
-            ],
-            neatNoble: [
-                { id: 'beerImport', price: true, tr: { name: "BEER IMPORT", description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, en: { name: "BEER IMPORT", description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, ru: { name: "BEER IMPORT", description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" } },
-                { id: 'localBeer', price: true, tr: { name: "LOCAL", description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, en: { name: "LOCAL", description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, ru: { name: "LOCAL", description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" } },
-                { id: 'draftEfes', price: true, tr: { name: "FIÇI EFES" }, en: { name: "DRAFT EFES" }, ru: { name: "БОЧКОВОЕ EFES" } },
-                { id: 'draftBecks', price: true, tr: { name: "FIÇI BECKS" }, en: { name: "DRAFT BECKS" }, ru: { name: "БОЧКОВОЕ BECKS" } },
-                { id: 'jameson', price: true, tr: { name: "Jameson" }, en: { name: "Jameson" }, ru: { name: "Jameson" } },
-                { id: 'glenfiddich', price: true, tr: { name: "Glenfiddich" }, en: { name: "Glenfiddich" }, ru: { name: "Glenfiddich" } },
-                { id: 'talisker', price: true, tr: { name: "Talisker 10" }, en: { name: "Talisker 10" }, ru: { name: "Talisker 10" } },
-                { id: 'beefeater', price: true, tr: { name: "Beefeater" }, en: { name: "Beefeater" }, ru: { name: "Beefeater" } },
-                { id: 'malfy', price: true, tr: { name: "Malfy" }, en: { name: "Malfy" }, ru: { name: "Malfy" } },
-                { id: 'deadMansFinger', price: true, tr: { name: "Dead Man's Finger" }, en: { name: "Dead Man's Finger" }, ru: { name: "Dead Man's Finger" } },
-                { id: 'mescal', price: true, tr: { name: "Mescal" }, en: { name: "Mescal" }, ru: { name: "Mescal" } },
-                { id: 'jager', price: true, tr: { name: "Jager" }, en: { name: "Jager" }, ru: { name: "Jager" } }
-            ]
+        en: {
+            tastes: [ { name: "FLAME-SEARED FRESH OCTOPUS SKEWER", price: prices.octopus, description: "SERVED WITH ROASTED PEAR." }, { name: "ISLAND STING", price: prices.islandSting, description: "JUMBO SHRIMP AND ROASTED PINEAPPLE." }, { name: "FIRE GLAZE", price: prices.fireGlaze, description: "CRISPY CHICKEN MARINATED WITH BEER." }, { name: "FRENCH FRIES", price: prices.fries }, { name: "CRISPY PLATE", price: prices.crispyPlate, description: "CRISPY CHICKEN, SAUSAGE AND FRIES." } ],
+            cocktails: [ { name: "Signature Cocktails", price: prices.signatureCocktail }, { name: "ITIR", description: "GERANIUM LEAF, GIN, GREEN APPLE, WHITE VERMOUTH." }, { name: "NORMAL", description: "CHAMOMILE VODKA, SORREL, WHITE WINE." }, { name: "Classic Cocktails", price: prices.classicCocktail, description: "We also have classics at our bar." } ],
+            neatNoble: [ { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, { name: "DRAFT EFES", price: prices.draftEfes }, { name: "DRAFT BECKS", price: prices.draftBecks }, { name: "Jameson", price: prices.jameson }, { name: "Glenfiddich", price: prices.glenfiddich }, { name: "Talisker 10", price: prices.talisker }, { name: "Beefeater", price: prices.beefeater }, { name: "Malfy", price: prices.malfy }, { name: "Dead Man's Finger", price: prices.deadMansFinger }, { name: "Mescal", price: prices.mescal }, { name: "Jager", price: prices.jager } ],
+            notes: { allergy: "Please inform our staff if you have any food allergies.", handmade: "All our products are handmade." },
+            titles: { menu: "Menu", tastes: "Tastes", cocktails: "Cocktails", neatNoble: "Neat & Noble" }
+        },
+        ru: {
+            tastes: [ { name: "ОСЬМИНОГ НА ГРИЛЕ НА ШПАЖКЕ", price: prices.octopus, description: "ПОДАЕТСЯ С ЖАРЕНОЙ ГРУШЕЙ." }, { name: "ОСТРОВНОЙ УЖАЛ", price: prices.islandSting, description: "БОЛЬШИЕ КРЕВЕТКИ И ЖАРЕНЫЙ АНАНАС." }, { name: "ОГНЕННАЯ ГЛАЗУРЬ", price: prices.fireGlaze, description: "ХРУСТЯЩАЯ КУРИЦА, МАРИНОВАННАЯ В ПИВЕ." }, { name: "КАРТОФЕЛЬ ФРИ", price: prices.fries }, { name: "ХРУСТЯЩАЯ ТАРЕЛКА", price: prices.crispyPlate, description: "ХРУСТЯЩАЯ КУРИЦА, КОЛБАСКИ И КАРТОФЕЛЬ." } ],
+            cocktails: [ { name: "Авторские Коктейли", price: prices.signatureCocktail }, { name: "ИТИР", description: "ЛИСТ ГЕРАНИ, ДЖИН, ЗЕЛЕНОЕ ЯБЛОКО, БЕЛЫЙ ВЕРМУТ." }, { name: "НОРМАЛЬНЫЙ", description: "ВОДКА НА РОМАШКЕ, ЩАВЕЛЬ, БЕЛОЕ ВИНО." }, { name: "Классические Коктейли", price: prices.classicCocktail, description: "В нашем баре также есть классика." } ],
+            neatNoble: [ { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, { name: "БОЧКОВОЕ EFES", price: prices.draftEfes }, { name: "БОЧКОВОЕ BECKS", price: prices.draftBecks }, { name: "Jameson", price: prices.jameson }, { name: "Glenfiddich", price: prices.glenfiddich }, { name: "Talisker 10", price: prices.talisker }, { name: "Beefeater", price: prices.beefeater }, { name: "Malfy", price: prices.malfy }, { name: "Dead Man's Finger", price: prices.deadMansFinger }, { name: "Mescal", price: prices.mescal }, { name: "Jager", price: prices.jager } ],
+            notes: { allergy: "Пожалуйста, сообщите персоналу, если у вас есть пищевая аллергия.", handmade: "Все наши продукты ручной работы." },
+            titles: { menu: "Меню", tastes: "Вкусы", cocktails: "Коктейли", neatNoble: "Neat & Noble" }
         }
     };
     
-    // --- YENİ VE DAHA SAĞLAM FONKSİYONLAR ---
-
-    // Menünün bir bölümünü (örn: Tatlar) HTML olarak oluşturan yardımcı fonksiyon
-    function buildMenuSection(category, lang) {
-        const items = menuData.items[category];
-        const textData = menuData.text[lang];
-        const title = textData[`${category}Title`] || (category.charAt(0).toUpperCase() + category.slice(1));
-        
-        const listItems = items.map(item => {
-            const langItem = item[lang] || item.tr; // Dil mevcut değilse Türkçe'ye dön
-            const name = langItem.name;
-            const description = langItem.description || '';
-            const price = item.price && item.id && prices[item.id] ? `<span class="menu-price">${prices[item.id]}</span>` : '';
-            return `<li><div class="menu-row"><span class="menu-name">${name}</span>${price}</div>${description ? `<div class="menu-desc">${description}</div>` : ''}</li>`;
-        }).join('');
-
-        return `<h3>${title}</h3><ul>${listItems}</ul>`;
-    }
-
-    // Belirli bir dil için tüm menü HTML'ini oluşturan ana fonksiyon
     function buildMenuHtmlFor(lang) {
-        const textData = menuData.text[lang];
-        let html = `<div lang="${lang}">`;
-        html += `<h2>${textData.menuTitle}</h2>`;
-        html += buildMenuSection('tastes', lang);
-        html += buildMenuSection('cocktails', lang);
-        html += buildMenuSection('neatNoble', lang);
-        html += `<div class="menu-note"><em>${textData.allergyNote}</em></div>`;
-        html += `<div class="menu-note"><em>${textData.handmadeNote}</em></div>`;
+        const content = menuContent[lang];
+        let html = `<div class="lang-block" lang="${lang}">`;
+        html += `<h2>${content.titles.menu}</h2>`;
+        
+        const buildSection = (title, items) => {
+            let sectionHtml = `<h3>${title}</h3><ul>`;
+            sectionHtml += items.map(item => {
+                const priceHtml = item.price ? `<span class="menu-price">${item.price}</span>` : '';
+                const descHtml = item.description ? `<div class="menu-desc">${item.description}</div>` : '';
+                return `<li><div class="menu-row"><span class="menu-name">${item.name}</span>${priceHtml}</div>${descHtml}</li>`;
+            }).join('');
+            sectionHtml += `</ul>`;
+            return sectionHtml;
+        };
+        
+        html += buildSection(content.titles.tastes, content.tastes);
+        html += buildSection(content.titles.cocktails, content.cocktails);
+        html += buildSection(content.titles.neatNoble, content.neatNoble);
+        
+        html += `<div class="menu-note"><em>${content.notes.allergy}</em></div>`;
+        html += `<div class="menu-note"><em>${content.notes.handmade}</em></div>`;
         html += `</div>`;
         return html;
     }
 
-    // Modal ilk açıldığında tüm diller için içeriği bir kere oluşturan fonksiyon
     function populateModal() {
         const modal = document.getElementById('modal');
         let fullHtml = `<button class="close-btn" onclick="closeModal()" aria-label="Kapat">×</button>`;
@@ -227,11 +206,11 @@
     }
 
     function showMenu() {
-        // Menü içeriği sadece ilk açılışta oluşturulur.
-        if (!document.getElementById('modal').hasChildNodes()) {
+        const modal = document.getElementById('modal');
+        if (modal.innerHTML.trim() === '') {
             populateModal();
         }
-        document.getElementById('modal').classList.add('show');
+        modal.classList.add('show');
         document.body.classList.add('modal-is-open');
     }
 
@@ -240,11 +219,12 @@
         document.body.classList.remove('modal-is-open');
     }
 
-    // Bu fonksiyon artık sadece dili değiştirir, içeriği yeniden oluşturmaz. CSS gerisini halleder.
     function changeLanguage(lang) {
         document.documentElement.lang = lang;
-        document.querySelectorAll('.language-switcher button').forEach(btn => btn.classList.remove('active'));
-        document.querySelector(`.language-switcher button[data-lang="${lang}"]`).classList.add('active');
+        document.querySelectorAll('.language-switcher button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.querySelector(`.language-switcher button[onclick="changeLanguage('${lang}')"]`).classList.add('active');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -261,17 +241,17 @@
 </head>
 <body>
   <div class="language-switcher">
-    <button data-lang="tr" onclick="changeLanguage('tr')" class="active">TR</button>
-    <button data-lang="en" onclick="changeLanguage('en')">EN</button>
-    <button data-lang="ru" onclick="changeLanguage('ru')">RU</button>
+    <button onclick="changeLanguage('tr')">TR</button>
+    <button onclick="changeLanguage('en')">EN</button>
+    <button onclick="changeLanguage('ru')">RU</button>
   </div>
   <div class="brand">
     <h1 class="main">FIN</h1>
-    <div class="sub" lang="tr">sip & bite</div>
-    <div class="sub" lang="en">sip & bite</div>
-    <div class="sub" lang="ru">sip & bite</div>
+    <div class="sub lang-block" lang="tr">sip & bite</div>
+    <div class="sub lang-block" lang="en">sip & bite</div>
+    <div class="sub lang-block" lang="ru">sip & bite</div>
   </div>
-  <div class="info" lang="tr">
+  <div class="info lang-block" lang="tr">
     <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foça, 1054. Sk. 102/A, 48300 Fethiye/Muğla</a>
     <div class="action-links">
       <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Yol Tarifi</a>
@@ -280,7 +260,7 @@
     </div>
     <a href="#" onclick="showMenu(); return false;" class="menu-btn">Menüyü Gör</a>
   </div>
-  <div class="info" lang="en">
+  <div class="info lang-block" lang="en">
     <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foca, 1054. St. 102/A, 48300 Fethiye/Mugla</a>
     <div class="action-links">
       <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Get Directions</a>
@@ -289,7 +269,7 @@
     </div>
     <a href="#" onclick="showMenu(); return false;" class="menu-btn">View Menu</a>
   </div>
-  <div class="info" lang="ru">
+  <div class="info lang-block" lang="ru">
     <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Фоча, ул. 1054, 102/A, 48300 Фетхие/Мугла</a>
     <div class="action-links">
       <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Маршрут</a>
