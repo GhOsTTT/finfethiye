@@ -17,7 +17,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="FIN Fethiye">
-  <!-- SEO Meta Tags -->
   <meta name="keywords" content="FIN, Fethiye, restoran, pub, deniz kenarı, kokteyl, yemek, Fethiye restoranları">
   <meta name="author" content="FIN Fethiye">
   <meta name="robots" content="index, follow">
@@ -99,22 +98,6 @@
       color: rgb(90, 50, 40);
     }
 
-    .wave {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 15vh;
-      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%23f5f0e6" fill-opacity="1" d="M0,96L80,101.3C160,107,320,117,480,144C640,171,800,213,960,197.3C1120,181,1280,107,1360,69.3L1440,32L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
-      background-size: cover;
-      animation: waveMotion 10s linear infinite;
-    }
-
-    @keyframes waveMotion {
-      0% { background-position-x: 0; }
-      100% { background-position-x: 1000px; }
-    } 
-
     .wave-container {
       position: absolute;
       bottom: 0;
@@ -131,55 +114,55 @@
       height: 100%;
       background-repeat: repeat-x;
       background-size: 50% 100%;
-      animation: waveAnim 8s linear infinite;
-      opacity: 0.4;
+      animation: waveAnim 10s linear infinite;
+      opacity: 0.7;
+      bottom: 0;
     }
 
     .wave1 {
-      background-image: url('data:image/svg+xml;utf8,<svg fill="%23f5f0e6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,64L80,85.3C160,107,320,149,480,160C640,171,800,149,960,144C1120,139,1280,149,1360,154.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
-      bottom: 0;
-      left: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFFFFF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,64L80,85.3C160,107,320,149,480,160C640,171,800,149,960,144C1120,139,1280,149,1360,154.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
       animation-delay: 0s;
     }
 
     .wave2 {
-      background-image: url('data:image/svg+xml;utf8,<svg fill="%23fbe8d3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="0.6" d="M0,128L80,133.3C160,139,320,149,480,165.3C640,181,800,203,960,197.3C1120,192,1280,160,1360,144L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
-      bottom: 0;
-      left: 0;
-      animation-delay: -4s;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23FFFFFF" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="0.6" d="M0,128L80,133.3C160,139,320,149,480,165.3C640,181,800,203,960,197.3C1120,192,1280,160,1360,144L1440,128L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>');
+      animation-delay: -5s;
     }
 
     @keyframes waveAnim {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-
+    
     .modal {
-      display: none;
-      position: fixed;
-      z-index: 2;
-      padding: 1rem;
-      background: white;
-      border: 2px solid rgb(120, 70, 60);
-      border-radius: 10px;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+        display: block;
+        position: fixed;
+        z-index: 1000;
+        left: 50%;
+        top: 50%;
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+        background: #fffdfa;
+        border-radius: 18px;
+        border: 2px solid #e5d3c0;
+        box-shadow: 0 8px 32px rgba(120,70,60,0.18);
+        text-align: left;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.9);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none;
     }
 
     .modal.show {
-      display: block;
-      opacity: 1;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        pointer-events: auto;
     }
 
     .language-switcher {
       position: fixed;
       top: 20px;
       right: 20px;
-      z-index: 3;
+      z-index: 1001;
     }
 
     .language-switcher button {
@@ -191,268 +174,109 @@
       cursor: pointer;
       border-radius: 5px;
       transition: all 0.3s ease;
-      transform: scale(1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .language-switcher button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .language-switcher button:hover::before {
-      left: 100%;
     }
 
     .language-switcher button:hover {
       background: rgb(120, 70, 60);
       color: white;
-      transform: scale(1.05);
-      box-shadow: 0 4px 8px rgba(120,70,60,0.3);
     }
 
     .language-switcher button.active {
       background: rgb(120, 70, 60);
       color: white;
       transform: scale(1.1);
-      box-shadow: 0 6px 12px rgba(120,70,60,0.4);
-    }
-
-    .language-switcher button:active {
-      transform: scale(0.95);
     }
 
     [lang="en"], [lang="ru"] {
       display: none;
     }
 
-    html[lang="en"] [lang="en"] {
-      display: block;
-    }
-
-    html[lang="en"] [lang="tr"], html[lang="en"] [lang="ru"] {
-      display: none;
-    }
-
-    html[lang="ru"] [lang="ru"] {
-      display: block;
-    }
-
-    html[lang="ru"] [lang="tr"], html[lang="ru"] [lang="en"] {
-      display: none;
-    }
+    html[lang="en"] [lang="en"] { display: block; }
+    html[lang="en"] [lang="tr"], html[lang="en"] [lang="ru"] { display: none; }
+    html[lang="ru"] [lang="ru"] { display: block; }
+    html[lang="ru"] [lang="tr"], html[lang="ru"] [lang="en"] { display: none; }
 
     #modal.menu-modal {
-      max-width: 95vw;
-      width: 420px;
-      max-height: 90vh;
+      width: 90vw;
+      max-width: 500px;
+      height: 85vh;
       overflow-y: auto;
-      padding: 2rem 1.5rem 1.5rem 1.5rem;
-      background: #fffdfa;
-      border-radius: 18px;
-      border: 2px solid #e5d3c0;
-      box-shadow: 0 8px 32px rgba(120,70,60,0.18);
       font-family: 'Montserrat', 'Roboto', sans-serif;
       color: #4a3a2a;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-      text-align: left;
-      animation: fadeIn 0.4s;
     }
-    #modal.menu-modal h2 {
-      margin-top: 0;
-      font-size: 2rem;
-      text-align: center;
-      letter-spacing: 2px;
-      color: #7c463c;
-    }
-    #modal.menu-modal h3 {
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
-      border-bottom: 1px solid #f5e6d6;
-      padding-bottom: 0.2rem;
-      color: #7c463c;
-    }
-    #modal.menu-modal ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    #modal.menu-modal li {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 1.1em;
-      padding-bottom: 0.7em;
-      border-bottom: 1px dashed #f5e6d6;
-    }
-    #modal.menu-modal li:last-child {
-      border-bottom: none;
-    }
-    #modal.menu-modal .menu-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 1em;
-    }
-    #modal.menu-modal .menu-name {
-      font-weight: 600;
-      font-size: 1.05em;
-      color: #4a3a2a;
-    }
-    #modal.menu-modal .menu-price {
-      font-weight: 500;
-      color: #a97c6c;
-      white-space: nowrap;
-      font-size: 1em;
-      margin-left: 0.5em;
-    }
-    #modal.menu-modal .menu-desc {
-      font-size: 0.95em;
-      color: #8d7b6a;
-      margin-top: 0.2em;
-      font-style: italic;
-    }
-    #modal.menu-modal .menu-note {
-      font-size: 0.95em;
-      color: #a97c6c;
-      margin-top: 1.2em;
-      text-align: center;
-    }
-    #modal.menu-modal .close-btn {
-      position: absolute;
-      top: 0.7em;
-      right: 1em;
-      background: none;
-      border: none;
-      font-size: 1.5em;
-      color: #a97c6c;
-      cursor: pointer;
-      font-weight: bold;
-      transition: color 0.2s;
-      z-index: 11;
-    }
-    #modal.menu-modal .close-btn:hover {
-      color: #7c463c;
-    }
+    
+    #modal.menu-modal h2 { margin-top: 0; font-size: 2rem; text-align: center; letter-spacing: 2px; color: #7c463c; }
+    #modal.menu-modal h3 { margin-top: 2rem; margin-bottom: 0.5rem; font-size: 1.2rem; border-bottom: 1px solid #f5e6d6; padding-bottom: 0.2rem; color: #7c463c; }
+    #modal.menu-modal ul { list-style: none; padding: 0; margin: 0; }
+    #modal.menu-modal li { display: flex; flex-direction: column; margin-bottom: 1.1em; padding-bottom: 0.7em; border-bottom: 1px dashed #f5e6d6; }
+    #modal.menu-modal li:last-child { border-bottom: none; }
+    #modal.menu-modal .menu-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1em; }
+    #modal.menu-modal .menu-name { font-weight: 600; font-size: 1.05em; color: #4a3a2a; }
+    #modal.menu-modal .menu-price { font-weight: 500; color: #a97c6c; white-space: nowrap; font-size: 1em; margin-left: 0.5em; }
+    #modal.menu-modal .menu-desc { font-size: 0.95em; color: #8d7b6a; margin-top: 0.2em; font-style: italic; }
+    #modal.menu-modal .menu-note { font-size: 0.95em; color: #a97c6c; margin-top: 1.2em; text-align: center; }
+    #modal.menu-modal .close-btn { position: absolute; top: 0.7em; right: 1em; background: none; border: none; font-size: 1.5em; color: #a97c6c; cursor: pointer; font-weight: bold; transition: color 0.2s; z-index: 11; }
+    #modal.menu-modal .close-btn:hover { color: #7c463c; }
     @media (max-width: 600px) {
-      #modal.menu-modal {
-        width: 98vw;
-        padding: 1.2rem 0.5rem 1rem 0.5rem;
-      }
-      #modal.menu-modal h2 {
-        font-size: 1.3rem;
-      }
-      #modal.menu-modal h3 {
-        font-size: 1.05rem;
-      }
+      #modal.menu-modal { width: 95vw; height: 90vh; padding: 1.2rem 0.8rem 1rem 0.8rem; }
+      #modal.menu-modal h2 { font-size: 1.5rem; }
+      #modal.menu-modal h3 { font-size: 1.1rem; }
     }
-
-    /* Harita modalı için CSS */
-    #mapModal {
-      max-width: 90vw;
-      width: 600px;
-      height: 400px;
-      padding: 0;
-      overflow: hidden;
-    }
-
-    #mapModal iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 10px;
-    }
-
-    /* Günün içkisi modalı için CSS */
-    #drinkModal {
-      max-width: 400px;
-      text-align: center;
-    }
-
-    #drinkModal .drink-name {
-      font-size: 1.5rem;
-      color: #7c463c;
-      margin-bottom: 1rem;
-    }
-
-    #drinkModal .drink-desc {
-      font-style: italic;
-      color: #8d7b6a;
-      margin-bottom: 1rem;
-    }
-
-    #drinkModal .drink-price {
-      font-weight: bold;
-      color: #a97c6c;
-      font-size: 1.2rem;
-    }
-
-    .action-links {
-      margin: 1em 0 0.5em 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7em 1.2em;
-      justify-content: center;
-    }
-    .action-links a {
-      display: flex;
-      align-items: center;
-      font-size: 1.08em;
-      color: #7c463c;
-      text-decoration: none;
-      font-weight: 500;
-      background: #f5f0e6;
-      border-radius: 6px;
-      padding: 0.25em 0.7em;
-      transition: background 0.2s, color 0.2s;
-      border: 1px solid #f5e6d6;
-    }
-    .action-links a:hover {
-      background: #7c463c;
-      color: #fffdfa;
-    }
-    .menu-btn {
-      display: inline-block;
-      margin-top: 1em;
-      padding: 0.6em 2em;
-      background: #7c463c;
-      color: #fffdfa;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1.15em;
-      transition: background 0.2s;
-      border: none;
-      box-shadow: 0 2px 8px rgba(120,70,60,0.08);
-      letter-spacing: 1px;
-    }
-    .menu-btn:hover {
-      background: #a97c6c;
-    }
+    #mapModal, #drinkModal { width: 90vw; max-width: 600px; }
+    #mapModal iframe { width: 100%; height: 70vh; max-height: 400px; border: none; border-radius: 10px; }
+    #drinkModal { max-width: 400px; text-align: center; }
+    #drinkModal .drink-name { font-size: 1.5rem; color: #7c463c; margin-bottom: 1rem; }
+    #drinkModal .drink-desc { font-style: italic; color: #8d7b6a; margin-bottom: 1rem; }
+    #drinkModal .drink-price { font-weight: bold; color: #a97c6c; font-size: 1.2rem; }
+    .action-links { margin: 1em 0 0.5em 0; display: flex; flex-wrap: wrap; gap: 0.7em 1.2em; justify-content: center; }
+    .action-links a { display: flex; align-items: center; font-size: 1.08em; color: #7c463c; text-decoration: none; font-weight: 500; background: rgba(245, 240, 230, 0.5); border-radius: 6px; padding: 0.25em 0.7em; transition: background 0.2s, color 0.2s; border: 1px solid #f5e6d6; }
+    .action-links a:hover { background: #7c463c; color: #fffdfa; }
+    .menu-btn { display: inline-block; margin-top: 1em; padding: 0.6em 2em; background: #7c463c; color: #fffdfa; border-radius: 8px; font-weight: bold; text-decoration: none; font-size: 1.15em; transition: background 0.2s; border: none; box-shadow: 0 2px 8px rgba(120,70,60,0.08); letter-spacing: 1px; }
+    .menu-btn:hover { background: #a97c6c; }
   </style>
   <script>
+    // --- MERKEZİ FİYAT LİSTESİ ---
+    // Gelecekte fiyatları sadece buradan değiştirmeniz yeterli olacaktır.
+    const prices = {
+      // Tastes
+      octopus: "560₺",
+      islandSting: "560₺",
+      fireGlaze: "450₺",
+      fries: "200₺",
+      crispyPlate: "650₺",
+
+      // Cocktails
+      signatureCocktail: "560₺",
+      classicCocktail: "600₺",
+
+      // Neat & Noble (Bira ve Diğerleri)
+      beerImport: "300₺",
+      localBeer: "200₺",
+      draftEfes: "170₺",
+      draftBecks: "180₺",
+      jameson: "400/650₺",
+      glenfiddich: "550/850₺",
+      talisker: "650/800₺",
+      beefeater: "400₺",
+      malfy: "600₺",
+      deadMansFinger: "250₺",
+      mescal: "350₺",
+      jager: "250₺"
+    };
+
+    // --- MENÜ VERİLERİ ---
+    // Menü içeriği aşağıdaki gibidir, fiyatlar yukarıdaki listeden otomatik çekilir.
     const menuData = {
       tr: {
         tastes: [
-          { name: "ALEVDE MÜHÜRLENMİŞ, ÖZEL MARİNE EDİLMİŞ TAZE AHTAPOT ŞİŞ", price: "560₺", description: "KIZARMIŞ ARMUT EŞLİĞİNDE." },
-          { name: "ISLAND STING", price: "560₺", description: "JUMBO KARİDES VE KÖZLENMİŞ ANANAS ŞİŞE DİZİLİR, IZGARADA TROPİK TATLARLA PİŞİRİLİR." },
-          { name: "FIRE GLAZE", price: "450₺", description: "BİRA İLE MARİNE EDİLMİŞ ÇITIR TAVUK, PANKO İLE KAPLANIR: TATLI ACI SOS, SARIMSAK, BAL VE HAFİF SOYA SOSUYLA LEZZETLENDİRİLİR." },
-          { name: "PATATES KIZARTMASI", price: "200₺" },
-          { name: "CRISPY PLATE", price: "650₺", description: "ÇITIR TAVUK, SOSİS VE PATATES KIZARMASI." }
+          { name: "ALEVDE MÜHÜRLENMİŞ, ÖZEL MARİNE EDİLMİŞ TAZE AHTAPOT ŞİŞ", price: prices.octopus, description: "KIZARMIŞ ARMUT EŞLİĞİNDE." },
+          { name: "ISLAND STING", price: prices.islandSting, description: "JUMBO KARİDES VE KÖZLENMİŞ ANANAS ŞİŞE DİZİLİR, IZGARADA TROPİK TATLARLA PİŞİRİLİR." },
+          { name: "FIRE GLAZE", price: prices.fireGlaze, description: "BİRA İLE MARİNE EDİLMİŞ ÇITIR TAVUK, PANKO İLE KAPLANIR: TATLI ACI SOS, SARIMSAK, BAL VE HAFİF SOYA SOSUYLA LEZZETLENDİRİLİR." },
+          { name: "PATATES KIZARTMASI", price: prices.fries },
+          { name: "CRISPY PLATE", price: prices.crispyPlate, description: "ÇITIR TAVUK, SOSİS VE PATATES KIZARMASI." }
         ],
         cocktails: [
-          { name: "Signature Cocktails", price: "450₺" },
+          { name: "Signature Cocktails", price: prices.signatureCocktail },
           { name: "ITIR", description: "ITIR YAPRAĞI, CİN, YEŞİL ELMA ASİDİ, BEYAZ VERMUT, BAHÇE LİMONU - tatı ekşi ferah" },
           { name: "NORMAL", description: "PAPATYALI VOTKA, KUZUKULAĞI, ASİDİK BEYAZ ŞARAP, YEŞİL ERİK - ekşi asidik ferah" },
           { name: "CHERRY PIE", description: "VİŞNE EKŞİSİ, İSLİ İSKOÇ VİSKİSİ, LİME, VANİLYA TENTÜRÜ, PORTAKAL BİTTERİ - meyvemsi tatlı sert" },
@@ -460,37 +284,35 @@
           { name: "LET'S GO MATE", description: "ZACAPA 23, ANANAS, YEŞİL ÇAY, LİME, AROMATİK BAHARATLAR - tropik hafif tatlı soyut" },
           { name: "MEANWHILE KAYAKÖY", description: "TAZE İNCİR YAPRAĞI, VOTKA, MÜRVER ÇİÇEĞI, ASİDİK ÇÖZELTİLER, PROSECCO - çiçeksi asidik ferah" },
           { name: "RITUEL", description: "KIRMIZI MEYVELER, CİN, PALO SANTO, AROMATİZE KIRMIZI ŞARAP, BAHÇE LİMONU - tatlı ekşi meyvemsi" },
-          { name: "Classic Cocktails", price: "450₺", description: "Barımızda klasiklere de yer var, sipariş için servis ekibimize danışın." }
+          { name: "Classic Cocktails", price: prices.classicCocktail, description: "Barımızda klasiklere de yer var, sipariş için servis ekibimize danışın." }
         ],
         neatNoble: [
-          // GÜNCELLENEN VE EKLENEN BİRALAR
-          { name: "BEER IMPORT", price: "250₺", description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" },
-          { name: "LOCAL", price: "180₺", description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" },
-          { name: "FIÇI EFES", price: "150₺" },
-          { name: "FIÇI BECKS", price: "160₺" },
-          // GÜNCELLENEN FİYATLAR
-          { name: "Jameson", price: "400/650₺" },
-          { name: "Glenfiddich", price: "550/850₺" },
-          { name: "Talisker 10", price: "650/800₺" },
-          { name: "Beefeater", price: "350₺" },
-          { name: "Malfy", price: "500₺" },
-          { name: "Dead Man's Finger", price: "250₺" },
-          { name: "Mescal", price: "350₺" },
-          { name: "Jager", price: "200₺" }
+          { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" },
+          { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" },
+          { name: "FIÇI EFES", price: prices.draftEfes },
+          { name: "FIÇI BECKS", price: prices.draftBecks },
+          { name: "Jameson", price: prices.jameson },
+          { name: "Glenfiddich", price: prices.glenfiddich },
+          { name: "Talisker 10", price: prices.talisker },
+          { name: "Beefeater", price: prices.beefeater },
+          { name: "Malfy", price: prices.malfy },
+          { name: "Dead Man's Finger", price: prices.deadMansFinger },
+          { name: "Mescal", price: prices.mescal },
+          { name: "Jager", price: prices.jager }
         ],
         allergyNote: "Herhangi bir gıda alerjiniz varsa lütfen personelimize bildiriniz.",
         handmadeNote: "Tüm ürünlerimiz el yapımıdır."
       },
       en: {
         tastes: [
-          { name: "FLAME-SEARED, SPECIALLY MARINATED FRESH OCTOPUS SKEWER", price: "560₺", description: "SERVED WITH ROASTED PEAR." },
-          { name: "ISLAND STING", price: "560₺", description: "JUMBO SHRIMP AND ROASTED PINEAPPLE ARE SKEWERED AND GRILLED WITH TROPICAL FLAVORS." },
-          { name: "FIRE GLAZE", price: "450₺", description: "CRISPY CHICKEN MARINATED WITH BEER, COATED WITH PANKO: FLAVORED WITH SWEET AND SOUR SAUCE, GARLIC, HONEY, AND LIGHT SOY SAUCE." },
-          { name: "FRENCH FRIES", price: "200₺" },
-          { name: "CRISPY PLATE", price: "650₺", description: "CRISPY CHICKEN, SAUSAGE AND FRENCH FRIES." }
+          { name: "FLAME-SEARED, SPECIALLY MARINATED FRESH OCTOPUS SKEWER", price: prices.octopus, description: "SERVED WITH ROASTED PEAR." },
+          { name: "ISLAND STING", price: prices.islandSting, description: "JUMBO SHRIMP AND ROASTED PINEAPPLE ARE SKEWERED AND GRILLED WITH TROPICAL FLAVORS." },
+          { name: "FIRE GLAZE", price: prices.fireGlaze, description: "CRISPY CHICKEN MARINATED WITH BEER, COATED WITH PANKO: FLAVORED WITH SWEET AND SOUR SAUCE, GARLIC, HONEY, AND LIGHT SOY SAUCE." },
+          { name: "FRENCH FRIES", price: prices.fries },
+          { name: "CRISPY PLATE", price: prices.crispyPlate, description: "CRISPY CHICKEN, SAUSAGE AND FRENCH FRIES." }
         ],
         cocktails: [
-          { name: "Signature Cocktails", price: "450₺" },
+          { name: "Signature Cocktails", price: prices.signatureCocktail },
           { name: "ITIR", description: "GERANIUM LEAF, GIN, GREEN APPLE ACID, WHITE VERMOUTH, GARDEN LEMON - sour refreshing taste" },
           { name: "NORMAL", description: "CHAMOMILE VODKA, SORREL, ACIDIC WHITE WINE, GREEN PLUM - sour acidic refreshing" },
           { name: "CHERRY PIE", description: "SOUR CHERRY, SMOKED SCOTCH WHISKY, LIME, VANILLA TINCTURE, ORANGE BITTERS - fruity sweet strong" },
@@ -498,264 +320,140 @@
           { name: "LET'S GO MATE", description: "ZACAPA 23, PINEAPPLE, GREEN TEA, LIME, AROMATIC SPICES - tropical lightly sweet abstract" },
           { name: "MEANWHILE KAYAKÖY", description: "FRESH FIG LEAF, VODKA, ELDERFLOWER, ACIDIC SOLUTIONS, PROSECCO - floral acidic refreshing" },
           { name: "RITUEL", description: "RED BERRIES, GIN, PALO SANTO, FLAVORED RED WINE, GARDEN LEMON - sweet sour fruity" },
-          { name: "Classic Cocktails", price: "450₺", description: "We also have classics at our bar, please ask our service team to order." }
+          { name: "Classic Cocktails", price: prices.classicCocktail, description: "We also have classics at our bar, please ask our service team to order." }
         ],
         neatNoble: [
-          // UPDATED AND ADDED BEERS
-          { name: "BEER IMPORT", price: "250₺", description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" },
-          { name: "LOCAL", price: "180₺", description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" },
-          { name: "DRAFT EFES", price: "150₺" },
-          { name: "DRAFT BECKS", price: "160₺" },
-          // UPDATED PRICES
-          { name: "Jameson", price: "400/650₺" },
-          { name: "Glenfiddich", price: "550/850₺" },
-          { name: "Talisker 10", price: "650/800₺" },
-          { name: "Beefeater", price: "350₺" },
-          { name: "Malfy", price: "500₺" },
-          { name: "Dead Man's Finger", price: "250₺" },
-          { name: "Mescal", price: "350₺" },
-          { name: "Jager", price: "200₺" }
+          { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" },
+          { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" },
+          { name: "DRAFT EFES", price: prices.draftEfes },
+          { name: "DRAFT BECKS", price: prices.draftBecks },
+          { name: "Jameson", price: prices.jameson },
+          { name: "Glenfiddich", price: prices.glenfiddich },
+          { name: "Talisker 10", price: prices.talisker },
+          { name: "Beefeater", price: prices.beefeater },
+          { name: "Malfy", price: prices.malfy },
+          { name: "Dead Man's Finger", price: prices.deadMansFinger },
+          { name: "Mescal", price: prices.mescal },
+          { name: "Jager", price: prices.jager }
         ],
         allergyNote: "Please inform our staff if you have any food allergies.",
         handmadeNote: "All our products are handmade."
       },
       ru: {
         tastes: [
-          { name: "ОСЬМИНОГ НА ГРИЛЕ, СПЕЦИАЛЬНО МАРИНОВАННЫЙ, СВЕЖИЙ, НА ШПАЖКЕ", price: "560₺", description: "ПОДАЕТСЯ С ЖАРЕНОЙ ГРУШЕЙ." },
-          { name: "ОСТРОВНОЙ УЖАЛ", price: "560₺", description: "БОЛЬШИЕ КРЕВЕТКИ И ЖАРЕНЫЙ АНАНАС НА ШПАЖКЕ, ПРИГОТОВЛЕННЫЕ НА ГРИЛЕ С ТРОПИЧЕСКИМИ ВКУСАМИ." },
-          { name: "ОГНЕННАЯ ГЛАЗУРЬ", price: "450₺", description: "ХРУСТЯЩАЯ КУРИЦА, МАРИНОВАННАЯ В ПИВЕ, ПОКРЫТАЯ ПАНКО: ПРИПРАВЛЕНА СЛАДКО-КИСЛЫМ СОУСОМ, ЧЕСНОКОМ, МЕДОМ И ЛЕГКИМ СОЕВЫМ СОУСОМ." },
-          { name: "КАРТОФЕЛЬ ФРИ", price: "200₺" },
-          { name: "ХРУСТЯЩАЯ ТАРЕЛКА", price: "650₺", description: "ХРУСТЯЩАЯ КУРИЦА, КОЛБАСКИ И КАРТОФЕЛЬ ФРИ." }
+          { name: "ОСЬМИНОГ НА ГРИЛЕ, СПЕЦИАЛЬНО МАРИНОВАННЫЙ", price: prices.octopus, description: "ПОДАЕТСЯ С ЖАРЕНОЙ ГРУШЕЙ." },
+          { name: "ОСТРОВНОЙ УЖАЛ", price: prices.islandSting, description: "БОЛЬШИЕ КРЕВЕТКИ И ЖАРЕНЫЙ АНАНАС НА ШПАЖКЕ." },
+          { name: "ОГНЕННАЯ ГЛАЗУРЬ", price: prices.fireGlaze, description: "ХРУСТЯЩАЯ КУРИЦА, МАРИНОВАННАЯ В ПИВЕ, В ПАНИРОВКЕ ПАНКО." },
+          { name: "КАРТОФЕЛЬ ФРИ", price: prices.fries },
+          { name: "ХРУСТЯЩАЯ ТАРЕЛКА", price: prices.crispyPlate, description: "ХРУСТЯЩАЯ КУРИЦА, КОЛБАСКИ И КАРТОФЕЛЬ ФРИ." }
         ],
         cocktails: [
-          { name: "Авторские Коктейли", price: "450₺" },
-          { name: "ИТИР", description: "ЛИСТ ГЕРАНИ, ДЖИН, КИСЛОТА ЗЕЛЕНОГО ЯБЛОКА, БЕЛЫЙ ВЕРМУТ, САДОВЫЙ ЛИМОН - кислый, освежающий вкус" },
+          { name: "Авторские Коктейли", price: prices.signatureCocktail },
+          { name: "ИТИР", description: "ЛИСТ ГЕРАНИ, ДЖИН, КИСЛОТА ЗЕЛЕНОГО ЯБЛОКА, БЕЛЫЙ ВЕРМУТ, САДОВЫЙ ЛИМОН - кислый, освежающий" },
           { name: "НОРМАЛЬНЫЙ", description: "ВОДКА НА РОМАШКЕ, ЩАВЕЛЬ, КИСЛОЕ БЕЛОЕ ВИНО, ЗЕЛЕНАЯ СЛИВА - кислый, кислотный, освежающий" },
-          { name: "ВИШНЕВЫЙ ПИРОГ", description: "ВИШНЕВАЯ КИСЛОТА, КОПЧЕНЫЙ ШОТЛАНДСКИЙ ВИСКИ, ЛАЙМ, ВАНИЛЬНАЯ НАСТОЙКА, АПЕЛЬСИНОВЫЙ БИТТЕР - фруктовый, сладкий, крепкий" },
-          { name: "ДА, ПОЖАЛУЙСТА", description: "СМЕСЬ ТЕКИЛЫ И МЕСКАЛЯ, МАРАКУЙЯ, ЛАЙМ, УРФА ИСОТ, ЛЕМОНГРАСС - слегка острый, сладкий, кислый, крепкий" },
-          { name: "ПОЙДЕМ, ДРУГ", description: "ZACAPA 23, АНАНАС, ЗЕЛЕНЫЙ ЧАЙ, ЛАЙМ, АРОМАТИЧЕСКИЕ СПЕЦИИ - tropik hafif tatlı soyut" },
-          { name: "ТЕМ ВРЕМЕНЕМ, КАЯКЁЙ", description: "СВЕЖИЙ ИНЖИРНЫЙ ЛИСТ, ВОДКА, ЦВЕТОК БУЗИНЫ, КИСЛОТНЫЕ РАСТВОРЫ, ПРОСЕККО - цветочный, кислотный, освежающий" },
-          { name: "РИТУАЛ", description: "КРАСНЫЕ ЯГОДЫ, ДЖИН, ПАЛО САНТО, АРОМАТИЗИРОВАННОЕ КРАСНОЕ ВИНО, САДОВЫЙ ЛИМОН - сладкий, кислый, фруктовый" },
-          { name: "Классические Коктейли", price: "450₺", description: "У нас в баре также есть классические коктейли, пожалуйста, обратитесь к нашему обслуживающему персоналу для заказа." }
+          { name: "ВИШНЕВЫЙ ПИРОГ", description: "ВИШНЕВАЯ КИСЛОТА, КОПЧЕНЫЙ ШОТЛАНДСКИЙ ВИСКИ, ЛАЙМ, ВАНИЛЬ - фруктовый, сладкий, крепкий" },
+          { name: "ДА, ПОЖАЛУЙСТА", description: "СМЕСЬ ТЕКИЛЫ И МЕСКАЛЯ, МАРАКУЙЯ, ЛАЙМ, УРФА ИСОТ, ЛЕМОНГРАСС - острый, сладкий, кислый, крепкий" },
+          { name: "ПОЙДЕМ, ДРУГ", description: "ZACAPA 23, АНАНАС, ЗЕЛЕНЫЙ ЧАЙ, ЛАЙМ, АРОМАТИЧЕСКИЕ СПЕЦИИ - тропический, сладкий" },
+          { name: "ТЕМ ВРЕМЕНЕМ, КАЯКЁЙ", description: "СВЕЖИЙ ИНЖИРНЫЙ ЛИСТ, ВОДКА, ЦВЕТОК БУЗИНЫ, ПРОСЕККО - цветочный, кислотный, освежающий" },
+          { name: "РИТУАЛ", description: "КРАСНЫЕ ЯГОДЫ, ДЖИН, ПАЛО САНТО, КРАСНОЕ ВИНО, САДОВЫЙ ЛИМОН - сладкий, кислый, фруктовый" },
+          { name: "Классические Коктейли", price: prices.classicCocktail, description: "У нас в баре также есть классика, спросите у официанта." }
         ],
         neatNoble: [
-          // ОБНОВЛЕННОЕ И ДОБАВЛЕННОЕ ПИВО
-          { name: "BEER IMPORT", price: "250₺", description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" },
-          { name: "LOCAL", price: "180₺", description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" },
-          { name: "БОЧКОВОЕ EFES", price: "150₺" },
-          { name: "БОЧКОВОЕ BECKS", price: "160₺" },
-           // ОБНОВЛЕННЫЕ ЦЕНЫ
-          { name: "Jameson", price: "400/650₺" },
-          { name: "Glenfiddich", price: "550/850₺" },
-          { name: "Talisker 10", price: "650/800₺" },
-          { name: "Beefeater", price: "350₺" },
-          { name: "Malfy", price: "500₺" },
-          { name: "Dead Man's Finger", price: "250₺" },
-          { name: "Mescal", price: "350₺" },
-          { name: "Belfast", price: "350₺" },
-          { name: "Jager", price: "200₺" }
+          { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner | Münchner, Paulaner | Weissbier, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" },
+          { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" },
+          { name: "БОЧКОВОЕ EFES", price: prices.draftEfes },
+          { name: "БОЧКОВОЕ BECKS", price: prices.draftBecks },
+          { name: "Jameson", price: prices.jameson },
+          { name: "Glenfiddich", price: prices.glenfiddich },
+          { name: "Talisker 10", price: prices.talisker },
+          { name: "Beefeater", price: prices.beefeater },
+          { name: "Malfy", price: prices.malfy },
+          { name: "Dead Man's Finger", price: prices.deadMansFinger },
+          { name: "Mescal", price: prices.mescal },
+          { name: "Jager", price: prices.jager }
         ],
-        allergyNote: "Пожалуйста, сообщите нашему персоналу, если у вас есть аллергия на еду.",
+        allergyNote: "Пожалуйста, сообщите персоналу, если у вас есть пищевая аллергия.",
         handmadeNote: "Все наши продукты ручной работы."
       }
     };
-  
 
-    function showModal() {
-      const lang = document.documentElement.lang;
-      const modal = document.getElementById('modal');
-      const menu = menuData[lang];
-      if (!menu) return;
+    function populateModalContent(type) {
+        const lang = document.documentElement.lang;
+        const modal = document.getElementById('modal');
+        const menu = menuData[lang];
+        if (!menu) return;
 
-      let html = `
-        <button class="close-btn" onclick="closeModal()" aria-label="Kapat">&times;</button>
-        <h2>${lang === 'tr' ? 'Menü' : lang === 'en' ? 'Menu' : 'Меню'}</h2>
-        <h3>${lang === 'tr' ? 'Tatlar' : lang === 'en' ? 'Tastes' : 'Вкусы'}</h3>
-        <ul>
-          ${menu.tastes.map(item => `
-            <li>
-              <div class="menu-row">
-                <span class="menu-name">${item.name}</span>
-                ${item.price ? `<span class="menu-price">${item.price}</span>` : ''}
-              </div>
-              ${item.description ? `<div class="menu-desc">${item.description}</div>` : ''}
-            </li>
-          `).join('')}
-        </ul>
-        <h3>${lang === 'tr' ? 'Kokteyller' : lang === 'en' ? 'Cocktails' : 'Коктейли'}</h3>
-        <ul>
-          ${menu.cocktails.map(item => `
-            <li>
-              <div class="menu-row">
-                <span class="menu-name">${item.name}</span>
-                ${item.price ? `<span class="menu-price">${item.price}</span>` : ''}
-              </div>
-              ${item.description ? `<div class="menu-desc">${item.description}</div>` : ''}
-            </li>
-          `).join('')}
-        </ul>
-        <h3>Neat & Noble</h3>
-        <ul>
-          ${menu.neatNoble.map(item => `
-            <li>
-              <div class="menu-row">
-                <span class="menu-name">${item.name}</span>
-                ${item.price ? `<span class="menu-price">${item.price}</span>` : ''}
-              </div>
-              ${item.description ? `<div class="menu-desc">${item.description}</div>` : ''}
-            </li>
-          `).join('')}
-        </ul>
-        <div class="menu-note"><em>${menu.allergyNote}</em></div>
-        <div class="menu-note"><em>${menu.handmadeNote}</em></div>
-      `;
-
-      modal.innerHTML = html;
-      modal.classList.add('show', 'menu-modal');
+        let html = `<button class="close-btn" onclick="closeModal()" aria-label="Kapat">×</button>`;
+        
+        if (type === 'menu') {
+            html += `
+                <h2>${lang === 'tr' ? 'Menü' : lang === 'en' ? 'Menu' : 'Меню'}</h2>
+                <h3>${lang === 'tr' ? 'Tatlar' : lang === 'en' ? 'Tastes' : 'Вкусы'}</h3>
+                <ul>${menu.tastes.map(item => `<li><div class="menu-row"><span class="menu-name">${item.name}</span>${item.price ? `<span class="menu-price">${item.price}</span>` : ''}</div>${item.description ? `<div class="menu-desc">${item.description}</div>` : ''}</li>`).join('')}</ul>
+                <h3>${lang === 'tr' ? 'Kokteyller' : lang === 'en' ? 'Cocktails' : 'Коктейли'}</h3>
+                <ul>${menu.cocktails.map(item => `<li><div class="menu-row"><span class="menu-name">${item.name}</span>${item.price ? `<span class="menu-price">${item.price}</span>` : ''}</div>${item.description ? `<div class="menu-desc">${item.description}</div>` : ''}</li>`).join('')}</ul>
+                <h3>Neat & Noble</h3>
+                <ul>${menu.neatNoble.map(item => `<li><div class="menu-row"><span class="menu-name">${item.name}</span>${item.price ? `<span class="menu-price">${item.price}</span>` : ''}</div>${item.description ? `<div class="menu-desc">${item.description}</div>` : ''}</li>`).join('')}</ul>
+                <div class="menu-note"><em>${menu.allergyNote}</em></div>
+                <div class="menu-note"><em>${menu.handmadeNote}</em></div>
+            `;
+            modal.className = 'modal menu-modal';
+        } else if (type === 'drink') {
+            const cocktails = menu.cocktails.filter(item => item.description);
+            const randomDrink = cocktails[Math.floor(Math.random() * cocktails.length)];
+            const title = lang === 'tr' ? '🍹 Günün İçkisi' : lang === 'en' ? '🍹 Drink of the Day' : '🍹 Напиток дня';
+            html += `
+                <h2>${title}</h2>
+                <div class="drink-name">${randomDrink.name}</div>
+                <div class="drink-desc">${randomDrink.description}</div>
+                <div class="drink-price">${prices.signatureCocktail}</div>
+                <button onclick="showDrinkOfTheDay()" style="margin-top:1rem; padding: 0.5rem 1rem; background: #7c463c; color: white; border: none; border-radius: 5px; cursor: pointer;">${lang === 'tr' ? 'Başka Bir İçki' : lang === 'en' ? 'Another Drink' : 'Другой напиток'}</button>
+            `;
+            modal.className = 'modal drink-modal';
+        }
+        
+        modal.innerHTML = html;
     }
+
+    function showModal(type) {
+        populateModalContent(type);
+        document.getElementById('modal').classList.add('show');
+    }
+    
+    function showMenu() { showModal('menu'); }
+    function showDrinkOfTheDay() { showModal('drink'); }
 
     function closeModal() {
-      const modal = document.getElementById('modal');
-      modal.classList.remove('show', 'menu-modal');
+        document.getElementById('modal').classList.remove('show');
     }
 
-    // Dışarı tıklanınca modalı kapat
     document.addEventListener('click', function(event) {
-      const modal = document.getElementById('modal');
-      if (modal.classList.contains('show') && !modal.contains(event.target) && event.target.tagName !== 'A') {
-        closeModal();
-      }
+        const modal = document.getElementById('modal');
+        if (event.target === modal) {
+            closeModal();
+        }
     });
 
     function changeLanguage(lang) {
-      document.documentElement.lang = lang;
-      document.querySelectorAll('.language-switcher button').forEach(btn => {
-        btn.classList.remove('active');
-      });
-      document.querySelector(`.language-switcher button[data-lang="${lang}"]`).classList.add('active');
-      // Show/hide elements based on language
-      document.querySelectorAll('[lang="tr"]').forEach(el => {
-        el.style.display = lang === 'tr' ? 'block' : 'none';
-      });
-      document.querySelectorAll('[lang="en"]').forEach(el => {
-        el.style.display = lang === 'en' ? 'block' : 'none';
-      });
-      document.querySelectorAll('[lang="ru"]').forEach(el => {
-        el.style.display = lang === 'ru' ? 'block' : 'none';
-      });
-      // Eğer modal açıksa, menüyü de güncelle
-      const modal = document.getElementById('modal');
-      if (modal.classList.contains('show')) {
-        showModal();
-      }
-    }
-
-    // Sayfa yüklendiğinde varsayılan dili ayarla
-    document.addEventListener('DOMContentLoaded', () => {
-      changeLanguage('tr');
-      
-      // Service Worker kayıt
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('./sw.js')
-          .then(registration => {
-            console.log('Service Worker kayıt edildi:', registration);
-          })
-          .catch(error => {
-            console.log('Service Worker kayıt hatası:', error);
-          });
-      }
-      
-      // Parallax efekti için mouse hareketi dinle
-      document.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
+        document.documentElement.lang = lang;
+        document.querySelectorAll('.language-switcher button').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.language-switcher button[data-lang="${lang}"]`).classList.add('active');
         
-        const brand = document.querySelector('.brand');
-        const infos = document.querySelectorAll('.info');
-        
-        if (brand) {
-          brand.style.transform = `translateZ(0) translate(${x * 10}px, ${y * 10}px)`;
+        const modal = document.getElementById('modal');
+        if (modal.classList.contains('show')) {
+            const type = modal.classList.contains('menu-modal') ? 'menu' : 'drink';
+            populateModalContent(type);
         }
-        
-        infos.forEach((info, index) => {
-          const delay = index * 0.1;
-          info.style.transform = `translateZ(0) translate(${x * (5 + delay)}px, ${y * (5 + delay)}px)`;
-        });
-      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        changeLanguage('tr');
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('./sw.js')
+              .then(reg => console.log('Service Worker registered', reg))
+              .catch(err => console.log('Service Worker registration error', err));
+        }
     });
-
-    // Push notification izin isteme
-    function requestNotificationPermission() {
-      if ('Notification' in window) {
-        Notification.requestPermission().then(permission => {
-          if (permission === 'granted') {
-            console.log('Bildirim izni verildi');
-            // Test bildirimi gönder
-            new Notification('FIN Fethiye', {
-              body: 'Hoş geldiniz! Özel tekliflerimizi kaçırmayın.',
-              icon: '/icon-192.png'
-            });
-          }
-        });
-      }
-    }
-
-    // Fiyat güncelleme fonksiyonu
-    async function updatePrices() {
-      try {
-        const response = await fetch('./prices.json');
-        const priceData = await response.json();
-        
-        // Fiyatları güncelle (bu kısım daha gelişmiş olabilir)
-        console.log('Fiyatlar güncellendi:', priceData.lastUpdated);
-        
-        // Menü verisini güncelle
-        Object.keys(priceData.prices).forEach(key => {
-          // Burada menü verisini güncelleyebilirsin
-        });
-      } catch (error) {
-        console.log('Fiyat güncelleme hatası:', error);
-      }
-    }
-
-    // Harita gösterme fonksiyonu
-    function showMap() {
-      const lang = document.documentElement.lang;
-      const modal = document.getElementById('modal');
-      const title = lang === 'tr' ? 'FIN Konumu' : lang === 'en' ? 'FIN Location' : 'Расположение FIN';
-      
-      modal.innerHTML = `
-        <button class="close-btn" onclick="closeModal()" aria-label="Kapat">&times;</button>
-        <h2>${title}</h2>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3190.1234567890123!2d29.12345678901234!3d36.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDA3JzM0LjQiTiAyOcKwMDcnMzQuNCJF!5e0!3m2!1str!2str!4v1234567890123" allowfullscreen="" loading="lazy"></iframe>
-      `;
-      modal.classList.add('show', 'menu-modal', 'map-modal');
-    }
-
-    // Günün içkisi fonksiyonu
-    function showDrinkOfTheDay() {
-      const lang = document.documentElement.lang;
-      const modal = document.getElementById('modal');
-      const menu = menuData[lang];
-      
-      if (!menu) return;
-      
-      // Kokteyllerden rastgele birini seç
-      const cocktails = menu.cocktails.filter(item => item.description); // Sadece açıklaması olanları
-      const randomDrink = cocktails[Math.floor(Math.random() * cocktails.length)];
-      
-      const title = lang === 'tr' ? '🍹 Günün İçkisi' : lang === 'en' ? '🍹 Drink of the Day' : '🍹 Напиток дня';
-      
-      modal.innerHTML = `
-        <button class="close-btn" onclick="closeModal()" aria-label="Kapat">&times;</button>
-        <h2>${title}</h2>
-        <div class="drink-name">${randomDrink.name}</div>
-        <div class="drink-desc">${randomDrink.description}</div>
-        ${randomDrink.price ? `<div class="drink-price">${randomDrink.price}</div>` : ''}
-        <button onclick="showDrinkOfTheDay()" style="margin-top:1rem; padding: 0.5rem 1rem; background: #7c463c; color: white; border: none; border-radius: 5px; cursor: pointer;">${lang === 'tr' ? 'Başka Bir İçki' : lang === 'en' ? 'Another Drink' : 'Другой напиток'}</button>
-      `;
-      modal.classList.add('show', 'menu-modal', 'drink-modal');
-    }
   </script>
 </head>
 <body>
@@ -772,41 +470,46 @@
     <div class="sub" lang="ru">sip & bite</div>
   </div>
 
-  <div class="info" lang="tr">
-    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foça, 1054. Sk. 102/A, 48300 Fethiye/Muğla</a>
-    <div class="action-links">
-      <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Yol Tarifi</a>
-      <a href="https://wa.me/905068580000" target="_blank">💬 WhatsApp</a>
-      <a href="https://www.instagram.com/finfethiye/" target="_blank">📸 Instagram</a>
-      <a href="#" onclick="showDrinkOfTheDay(); return false;">🍹 Günün İçkisi</a>
+  <div lang="tr">
+    <div class="info">
+      <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foça, 1054. Sk. 102/A, 48300 Fethiye/Muğla</a>
+      <div class="action-links">
+        <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Yol Tarifi</a>
+        <a href="https://wa.me/905068580000" target="_blank">💬 WhatsApp</a>
+        <a href="https://www.instagram.com/finfethiye/" target="_blank">📸 Instagram</a>
+        <a href="#" onclick="showDrinkOfTheDay(); return false;">🍹 Günün İçkisi</a>
+      </div>
+      <a href="#" onclick="showMenu(); return false;" class="menu-btn">Menüyü Gör</a>
     </div>
-    <a href="#" onclick="showModal(); return false;" class="menu-btn">Menüyü Gör</a>
   </div>
-  <div class="info" lang="en">
-    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foca, 1054. St. 102/A, 48300 Fethiye/Mugla</a>
-    <div class="action-links">
-      <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Get Directions</a>
-      <a href="https://wa.me/905068580000" target="_blank">💬 WhatsApp</a>
-      <a href="https://www.instagram.com/finfethiye/" target="_blank">📸 Instagram</a>
-      <a href="#" onclick="showDrinkOfTheDay(); return false;">🍹 Drink of the Day</a>
+  <div lang="en">
+    <div class="info">
+      <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Foca, 1054. St. 102/A, 48300 Fethiye/Mugla</a>
+      <div class="action-links">
+        <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Get Directions</a>
+        <a href="https://wa.me/905068580000" target="_blank">💬 WhatsApp</a>
+        <a href="https://www.instagram.com/finfethiye/" target="_blank">📸 Instagram</a>
+        <a href="#" onclick="showDrinkOfTheDay(); return false;">🍹 Drink of the Day</a>
+      </div>
+      <a href="#" onclick="showMenu(); return false;" class="menu-btn">View Menu</a>
     </div>
-    <a href="#" onclick="showModal(); return false;" class="menu-btn">View Menu</a>
   </div>
-  <div class="info" lang="ru">
-    <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Фоча, ул. 1054, 102/A, 48300 Фетхие/Мугла</a>
-    <div class="action-links">
-      <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Маршрут</a>
-      <a href="https://wa.me/905068580000" target="_blank">💬 WhatsApp</a>
-      <a href="https://www.instagram.com/finfethiye/" target="_blank">📸 Instagram</a>
-      <a href="#" onclick="showDrinkOfTheDay(); return false;">🍹 Напиток дня</a>
+  <div lang="ru">
+    <div class="info">
+      <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">Фоча, ул. 1054, 102/A, 48300 Фетхие/Мугла</a>
+      <div class="action-links">
+        <a href="https://maps.app.goo.gl/WJk1iHcPmf6R8HhJA" target="_blank">🚗 Маршрут</a>
+        <a href="https://wa.me/905068580000" target="_blank">💬 WhatsApp</a>
+        <a href="https://www.instagram.com/finfethiye/" target="_blank">📸 Instagram</a>
+        <a href="#" onclick="showDrinkOfTheDay(); return false;">🍹 Напиток дня</a>
+      </div>
+      <a href="#" onclick="showMenu(); return false;" class="menu-btn">Посмотреть Меню</a>
     </div>
-    <a href="#" onclick="showModal(); return false;" class="menu-btn">Посмотреть Меню</a>
   </div>
 
   <div id="modal" class="modal"></div>
 
-  <div class="wave"></div>
-  <div class="wave">
+  <div class="wave-container">
     <div class="wave wave1"></div>
     <div class="wave wave2"></div>
   </div>
