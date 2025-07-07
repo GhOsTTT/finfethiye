@@ -6,7 +6,7 @@
   <title>finfethiye</title>
   <meta name="description" content="FIN - sip & bite">
   <meta property="og:title" content="FIN Fethiye">
-  <meta property="og:description" content="Fethiye'de deniz kenarında samimi bir pub & restoran: FIN - sip & bite">
+  <meta property="og:description" content="FIN - sip & bite">
   <meta property="og:image" content="https://www.finfethiye.com/og-image.jpg">
   <meta property="og:url" content="https://www.finfethiye.com">
   <meta name="theme-color" content="#f5f0e6">
@@ -17,7 +17,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="FIN Fethiye">
-  <meta name="keywords" content="FIN, Fethiye, restoran, pub, deniz kenarı, kokteyl, yemek, Fethiye restoranları">
+  <meta name="keywords" content="FIN, Fethiye, restoran, pub, deniz kenarı, kokteyl, yemek, Fethiye restoranları, hamburger">
   <meta name="author" content="FIN Fethiye">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.finfethiye.com">
@@ -136,18 +136,33 @@
   </style>
   <script>
     const prices = {
-      octopus: "560₺", islandSting: "560₺", fireGlaze: "450₺", fries: "200₺", crispyPlate: "650₺",
-      signatureCocktail: "560₺", classicCocktail: "600₺",
-      beerImport: "300₺", localBeer: "200₺", draftEfes: "170₺", draftBecks: "180₺",
-      jameson: "400/650₺", glenfiddich: "550/850₺", talisker: "650/800₺", beefeater: "400₺",
-      malfy: "600₺", deadMansFinger: "250₺", mescal: "350₺", jager: "250₺"
+      // DÜZENLEME: Hamburger fiyatı için burayı güncelleyebilirsiniz
+      smokeBurger: "350₺", 
+      fries: "200₺",
+      signatureCocktail: "560₺", 
+      classicCocktail: "600₺",
+      beerImport: "300₺", 
+      localBeer: "200₺", 
+      draftEfes: "170₺", 
+      draftBecks: "180₺",
+      jameson: "400/650₺", 
+      glenfiddich: "550/850₺", 
+      talisker: "650/800₺", 
+      beefeater: "400₺",
+      malfy: "600₺", 
+      deadMansFinger: "250₺", 
+      mescal: "350₺", 
+      jager: "250₺"
     };
 
     const menuContent = {
         tr: {
-            tastes: [ { name: "ALEVDE MÜHÜRLENMİŞ TAZE AHTAPOT ŞİŞ", price: prices.octopus, description: "KIZARMIŞ ARMUT EŞLİĞİNDE." }, { name: "ISLAND STING", price: prices.islandSting, description: "JUMBO KARİDES VE KÖZLENMİŞ ANANAS." }, { name: "FIRE GLAZE", price: prices.fireGlaze, description: "BİRA İLE MARİNE EDİLMİŞ ÇITIR TAVUK." }, { name: "PATATES KIZARTMASI", price: prices.fries }, { name: "CRISPY PLATE", price: prices.crispyPlate, description: "ÇITIR TAVUK, SOSİS VE PATATES." } ],
+            tastes: [ 
+                // DÜZENLEME: Tatlar bölümü güncellendi
+                { name: "SMOKE BURGER", price: prices.smokeBurger, description: "2x50gr smash köfte, füme et, 2x cheddar, trüflü mayonez, tatlı biber reçeli, el yapımı ekmek, özel hamburgersosumuz." },
+                { name: "PATATES KIZARTMASI", price: prices.fries }
+            ],
             cocktails: [
-                // DÜZELTME: Eksik kokteyller eklendi
                 { name: "Signature Cocktails", price: prices.signatureCocktail },
                 { name: "ITIR", description: "ITIR YAPRAĞI, CİN, YEŞİL ELMA ASİDİ, BEYAZ VERMUT, BAHÇE LİMONU - tatı ekşi ferah" },
                 { name: "NORMAL", description: "PAPATYALI VOTKA, KUZUKULAĞI, ASİDİK BEYAZ ŞARAP, YEŞİL ERİK - ekşi asidik ferah" },
@@ -163,7 +178,10 @@
             titles: { menu: "Menü", tastes: "Tatlar", cocktails: "Kokteyller", neatNoble: "Neat & Noble" }
         },
         en: {
-            tastes: [ { name: "FLAME-SEARED FRESH OCTOPUS SKEWER", price: prices.octopus, description: "SERVED WITH ROASTED PEAR." }, { name: "ISLAND STING", price: prices.islandSting, description: "JUMBO SHRIMP AND ROASTED PINEAPPLE." }, { name: "FIRE GLAZE", price: prices.fireGlaze, description: "CRISPY CHICKEN MARINATED WITH BEER." }, { name: "FRENCH FRIES", price: prices.fries }, { name: "CRISPY PLATE", price: prices.crispyPlate, description: "CRISPY CHICKEN, SAUSAGE AND FRIES." } ],
+            tastes: [ 
+                { name: "SMOKE BURGER", price: prices.smokeBurger, description: "2x50gr smash patty, smoked meat, 2x cheddar, truffle mayo, sweet pepper jam, handmade bun." },
+                { name: "FRENCH FRIES", price: prices.fries }
+            ],
             cocktails: [
                 { name: "Signature Cocktails", price: prices.signatureCocktail },
                 { name: "ITIR", description: "GERANIUM LEAF, GIN, GREEN APPLE ACID, WHITE VERMOUTH, GARDEN LEMON - sour refreshing taste" },
@@ -180,7 +198,10 @@
             titles: { menu: "Menu", tastes: "Tastes", cocktails: "Cocktails", neatNoble: "Neat & Noble" }
         },
         ru: {
-            tastes: [ { name: "ОСЬМИНОГ НА ГРИЛЕ НА ШПАЖКЕ", price: prices.octopus, description: "ПОДАЕТСЯ С ЖАРЕНОЙ ГРУШЕЙ." }, { name: "ОСТРОВНОЙ УЖАЛ", price: prices.islandSting, description: "БОЛЬШИЕ КРЕВЕТКИ И ЖАРЕНЫЙ АНАНАС." }, { name: "ОГНЕННАЯ ГЛАЗУРЬ", price: prices.fireGlaze, description: "ХРУСТЯЩАЯ КУРИЦА, МАРИНОВАННАЯ В ПИВЕ." }, { name: "КАРТОФЕЛЬ ФРИ", price: prices.fries }, { name: "ХРУСТЯЩАЯ ТАРЕЛКА", price: prices.crispyPlate, description: "ХРУСТЯЩАЯ КУРИЦА, КОЛБАСКИ И КАРТОФЕЛЬ." } ],
+            tastes: [ 
+                { name: "СМОК БУРГЕР", price: prices.smokeBurger, description: "2x50гр котлета smash, 2x чеддер, трюфельный майонез, джем из сладкого перца, домашняя булочка, копченое мясо." },
+                { name: "КАРТОФЕЛЬ ФРИ", price: prices.fries }
+            ],
             cocktails: [
                 { name: "Авторские Коктейли", price: prices.signatureCocktail },
                 { name: "ИТИР", description: "ЛИСТ ГЕРАНИ, ДЖИН, ЗЕЛЕНОЕ ЯБЛОКО, БЕЛЫЙ ВЕРМУТ." },
