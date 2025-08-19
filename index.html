@@ -104,9 +104,13 @@
       display: block;
     }
     
+    /* Menü MODAL arka plan resmi (bozmadan, sadece override) */
     #modal.menu-modal {
       width: 90vw; max-width: 500px; height: 85vh; overflow-y: auto;
       font-family: 'Montserrat', 'Roboto', sans-serif; color: #4a3a2a;
+      /* mevcut background'ı override ediyoruz: */
+      background: linear-gradient(to bottom, rgba(255,253,250,0.92), rgba(255,253,250,0.80)),
+                  url('https://raw.githubusercontent.com/GhOsTTT/finfethiye/refs/heads/main/menu-bg.webp') center/cover no-repeat;
     }
     #modal.menu-modal h2 { margin-top: 0; font-size: 2rem; text-align: center; letter-spacing: 2px; color: #7c463c; }
     #modal.menu-modal h3 { margin-top: 2rem; margin-bottom: 0.5rem; font-size: 1.2rem; border-bottom: 1px solid #f5e6d6; padding-bottom: 0.2rem; color: #7c463c; }
@@ -169,7 +173,6 @@
                 { name: "LET'S GO MATE", description: "ZACAPA 23, ANANAS, YEŞİL ÇAY, LİME, AROMATİK BAHARATLAR - tropik hafif tatlı soyut" },
                 { name: "MEANWHILE KAYAKÖY", description: "TAZE İNCİR YAPRAĞI, VOTKA, MÜRVER ÇİÇEĞI, ASİDİK ÇÖZELTİLER, PROSECCO - çiçeksi asidik ferah" },
                 { name: "RITUEL", description: "KIRMIZI MEYVELER, CİN, PALO SANTO, AROMATİZE KIRMIZI ŞARAP, BAHÇE LİMONU - tatlı ekşi meyvemsi" },
-                // YENİ EKLENEN KOKTEYL
                 { name: "EGELİ MARGARITA", description: "Pembe domates, tulum peyniri ile yıkanmış tekila, lime, limon yaprağı, kıtır domates. *asidik *tatlı *ekşi *egeli" },
                 { name: "Classic Cocktails", price: prices.classicCocktail, description: "Barımızda klasiklere de yer var, sipariş için servis ekibimize danışın." }
             ],
@@ -191,7 +194,6 @@
                 { name: "LET'S GO MATE", description: "ZACAPA 23, PINEAPPLE, GREEN TEA, LIME, AROMATIC SPICES - tropical lightly sweet abstract" },
                 { name: "MEANWHILE KAYAKÖY", description: "FRESH FIG LEAF, VODKA, ELDERFLOWER, ACIDIC SOLUTIONS, PROSECCO - floral acidic refreshing" },
                 { name: "RITUEL", description: "RED BERRIES, GIN, PALO SANTO, FLAVORED RED WINE, GARDEN LEMON - sweet sour fruity" },
-                // YENİ EKLENEN KOKTEYL
                 { name: "AEGEAN MARGARITA", description: "Pink tomato, tulum cheese-washed tequila, lime, lemon leaf, crispy tomato. *acidic *sweet *sour *aegean" },
                 { name: "Classic Cocktails", price: prices.classicCocktail, description: "We also have classics at our bar, please ask our service team to order." }
             ],
@@ -213,7 +215,6 @@
                 { name: "ПОЙДЕМ, ДРУГ", description: "ZACAPA 23, АНАНАС, ЗЕЛЕНЫЙ ЧАЙ, ЛАЙМ, АРОМАТИЧЕСКИЕ СПЕЦИИ - тропический, сладкий" },
                 { name: "ТЕМ ВРЕМЕНЕМ, КАЯКЁЙ", description: "СВЕЖИЙ ИНЖИРНЫЙ ЛИСТ, ВОДКА, ЦВЕТОК БУЗИНЫ, ПРОСЕККО - цветочный, кислотный, освежающий" },
                 { name: "РИТУАЛ", description: "КРАСНЫЕ ЯГОДЫ, ДЖИН, ПАЛО САНТО, КРАСНОЕ ВИНО, САДОВЫЙ ЛИМОН - сладкий, кислый, фруктовый" },
-                // YENİ EKLENEN KOKTEYL
                 { name: "ЭГЕЙСКАЯ МАРГАРИТА", description: "Розовый помидор, текила, настоянная на сыре тулум, лайм, лимонный лист, хрустящий помидор. *кислотный *сладкий *кислый *эгейский" },
                 { name: "Классические Коктейли", price: prices.classicCocktail, description: "В нашем баре также есть классика." }
             ],
