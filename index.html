@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>finfethiye</title>
+  <title>FIN Fethiye</title>
   <meta name="description" content="FIN - sip & bite">
   <meta property="og:title" content="FIN Fethiye">
   <meta property="og:description" content="FIN - sip & bite">
@@ -136,8 +136,7 @@
   </style>
   <script>
     const prices = {
-      // DÜZENLEME: Hamburger fiyatı için burayı güncelleyebilirsiniz
-      smokeBurger: "350₺", 
+      smokeBurger: "XXX₺", 
       fries: "200₺",
       signatureCocktail: "560₺", 
       classicCocktail: "600₺",
@@ -158,8 +157,7 @@
     const menuContent = {
         tr: {
             tastes: [ 
-                // DÜZENLEME: Tatlar bölümü güncellendi
-                { name: "SMOKE BURGER", price: prices.smokeBurger, description: "2x50gr smash köfte, füme et, 2x cheddar, trüflü mayonez, tatlı biber reçeli, el yapımı ekmek, özel hamburger sosumuz." },
+                { name: "SMOKE BURGER", price: prices.smokeBurger, description: "2x50gr smash köfte, 2x cheddar, trüflü mayonez, tatlı biber reçeli, el yapımı ekmek, füme et." },
                 { name: "PATATES KIZARTMASI", price: prices.fries }
             ],
             cocktails: [
@@ -171,6 +169,8 @@
                 { name: "LET'S GO MATE", description: "ZACAPA 23, ANANAS, YEŞİL ÇAY, LİME, AROMATİK BAHARATLAR - tropik hafif tatlı soyut" },
                 { name: "MEANWHILE KAYAKÖY", description: "TAZE İNCİR YAPRAĞI, VOTKA, MÜRVER ÇİÇEĞI, ASİDİK ÇÖZELTİLER, PROSECCO - çiçeksi asidik ferah" },
                 { name: "RITUEL", description: "KIRMIZI MEYVELER, CİN, PALO SANTO, AROMATİZE KIRMIZI ŞARAP, BAHÇE LİMONU - tatlı ekşi meyvemsi" },
+                // YENİ EKLENEN KOKTEYL
+                { name: "EGELİ MARGARITA", description: "Pembe domates, tulum peyniri ile yıkanmış tekila, lime, limon yaprağı, kıtır domates. *asidik *tatlı *ekşi *egeli" },
                 { name: "Classic Cocktails", price: prices.classicCocktail, description: "Barımızda klasiklere de yer var, sipariş için servis ekibimize danışın." }
             ],
             neatNoble: [ { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, { name: "FIÇI EFES", price: prices.draftEfes }, { name: "FIÇI BECKS", price: prices.draftBecks }, { name: "Jameson", price: prices.jameson }, { name: "Glenfiddich", price: prices.glenfiddich }, { name: "Talisker 10", price: prices.talisker }, { name: "Beefeater", price: prices.beefeater }, { name: "Malfy", price: prices.malfy }, { name: "Dead Man's Finger", price: prices.deadMansFinger }, { name: "Mescal", price: prices.mescal }, { name: "Jager", price: prices.jager } ],
@@ -179,7 +179,7 @@
         },
         en: {
             tastes: [ 
-                { name: "SMOKE BURGER", price: prices.smokeBurger, description: "2x50gr smash patty, smoked meat, 2x cheddar, truffle mayo, sweet pepper jam, handmade bun." },
+                { name: "SMOKE BURGER", price: prices.smokeBurger, description: "2x50gr smash patty, 2x cheddar, truffle mayo, sweet pepper jam, handmade bun, smoked meat." },
                 { name: "FRENCH FRIES", price: prices.fries }
             ],
             cocktails: [
@@ -191,6 +191,8 @@
                 { name: "LET'S GO MATE", description: "ZACAPA 23, PINEAPPLE, GREEN TEA, LIME, AROMATIC SPICES - tropical lightly sweet abstract" },
                 { name: "MEANWHILE KAYAKÖY", description: "FRESH FIG LEAF, VODKA, ELDERFLOWER, ACIDIC SOLUTIONS, PROSECCO - floral acidic refreshing" },
                 { name: "RITUEL", description: "RED BERRIES, GIN, PALO SANTO, FLAVORED RED WINE, GARDEN LEMON - sweet sour fruity" },
+                // YENİ EKLENEN KOKTEYL
+                { name: "AEGEAN MARGARITA", description: "Pink tomato, tulum cheese-washed tequila, lime, lemon leaf, crispy tomato. *acidic *sweet *sour *aegean" },
                 { name: "Classic Cocktails", price: prices.classicCocktail, description: "We also have classics at our bar, please ask our service team to order." }
             ],
             neatNoble: [ { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, { name: "DRAFT EFES", price: prices.draftEfes }, { name: "DRAFT BECKS", price: prices.draftBecks }, { name: "Jameson", price: prices.jameson }, { name: "Glenfiddich", price: prices.glenfiddich }, { name: "Talisker 10", price: prices.talisker }, { name: "Beefeater", price: prices.beefeater }, { name: "Malfy", price: prices.malfy }, { name: "Dead Man's Finger", price: prices.deadMansFinger }, { name: "Mescal", price: prices.mescal }, { name: "Jager", price: prices.jager } ],
@@ -211,6 +213,8 @@
                 { name: "ПОЙДЕМ, ДРУГ", description: "ZACAPA 23, АНАНАС, ЗЕЛЕНЫЙ ЧАЙ, ЛАЙМ, АРОМАТИЧЕСКИЕ СПЕЦИИ - тропический, сладкий" },
                 { name: "ТЕМ ВРЕМЕНЕМ, КАЯКЁЙ", description: "СВЕЖИЙ ИНЖИРНЫЙ ЛИСТ, ВОДКА, ЦВЕТОК БУЗИНЫ, ПРОСЕККО - цветочный, кислотный, освежающий" },
                 { name: "РИТУАЛ", description: "КРАСНЫЕ ЯГОДЫ, ДЖИН, ПАЛО САНТО, КРАСНОЕ ВИНО, САДОВЫЙ ЛИМОН - сладкий, кислый, фруктовый" },
+                // YENİ EKLENEN KOKTEYL
+                { name: "ЭГЕЙСКАЯ МАРГАРИТА", description: "Розовый помидор, текила, настоянная на сыре тулум, лайм, лимонный лист, хрустящий помидор. *кислотный *сладкий *кислый *эгейский" },
                 { name: "Классические Коктейли", price: prices.classicCocktail, description: "В нашем баре также есть классика." }
             ],
             neatNoble: [ { name: "BEER IMPORT", price: prices.beerImport, description: "Tsingtao, Coors, Estrella, Paulaner, Blue Moon, Budweiser, Daura | gluten free, Miller, Bud, Becks, Corona" }, { name: "LOCAL", price: prices.localBeer, description: "Bomonti, Efes malt, Efes premium, Efes, Belfast" }, { name: "БОЧКОВОЕ EFES", price: prices.draftEfes }, { name: "БОЧКОВОЕ BECKS", price: prices.draftBecks }, { name: "Jameson", price: prices.jameson }, { name: "Glenfiddich", price: prices.glenfiddich }, { name: "Talisker 10", price: prices.talisker }, { name: "Beefeater", price: prices.beefeater }, { name: "Malfy", price: prices.malfy }, { name: "Dead Man's Finger", price: prices.deadMansFinger }, { name: "Mescal", price: prices.mescal }, { name: "Jager", price: prices.jager } ],
